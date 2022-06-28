@@ -1,1 +1,0 @@
- git remote set-url origin https://tierstra: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@github.com/kalem-edlin/tierstra.git
