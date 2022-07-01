@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./components/Navbar";
+import TierCanvas from "./components/Tierlist"
+import { Routes, Route } from "react-router-dom";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark'
+        }
+    });
+
+    const handleExport = () => {
+        alert("will export file")
+    };
+
+    return (
+        <React.Fragment>
+            <CssBaseline />
+            <ThemeProvider theme={darkTheme}>
+                <Navbar handleExport={handleExport}/>
+                <Routes>
+                    <Route path="/tierstra" element={<TierCanvas />} />
+                </Routes>
+            </ThemeProvider>
+        </React.Fragment>
+    );
 }
 
 export default App;
