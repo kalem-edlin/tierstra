@@ -1,3 +1,5 @@
+
+// The preloaded initial data that defines the format of a tierlist object
 const initialData = {
     tiles: {
         'tile-1': {id: 'tile-1', content: 'This is tile 1'},
@@ -11,9 +13,9 @@ const initialData = {
         'tier-row-1': {id: 'tier-row-1', title: 'A', tileIds: []},
         'tier-row-2': {id: 'tier-row-2', title: 'B', tileIds: []},
         'tier-row-3': {id: 'tier-row-3', title: 'C', tileIds: []},
-        'tier-palette': {id: 'tier-palette', title: 'Palette', tileIds: ['tile-1', 'tile-2', 'tile-3', 'tile-4', 'tile-5', 'tile-6']},
+        'palette': {id: 'palette', tileIds: ['tile-1', 'tile-2', 'tile-3', 'tile-4', 'tile-5', 'tile-6']},
     },
-    rowOrder: ['tier-row-1', 'tier-row-2', 'tier-row-3', 'tier-palette'],
+    tierRowOrder: ['tier-row-1', 'tier-row-2', 'tier-row-3'],
 }
 
 export default initialData
