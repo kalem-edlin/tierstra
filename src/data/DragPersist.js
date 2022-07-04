@@ -5,10 +5,6 @@ export const handleRowChange = (data, source, destination, draggableId) => {
     const newTierRowORder = Array.from(data.tierRowOrder)
     newTierRowORder.splice(source.index, 1)
     newTierRowORder.splice(destination.index, 0, draggableId)
-    console.log({
-        ...data,
-        tierRowOrder: newTierRowORder
-    })
     return {
         ...data,
         tierRowOrder: newTierRowORder

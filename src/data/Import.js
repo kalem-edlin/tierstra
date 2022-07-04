@@ -1,29 +1,25 @@
 import initialData from '../data/InitialData'
 
 // Will import a selected file as a new import session storage item to be loaded in the canvas
-export const handleImport = (event) => {
+export const handleImport = (event, reloadTierlist) => {
     const fileReader = new FileReader();
         fileReader.readAsText(event.target.files[0], "UTF-8")
         fileReader.onload = e => {
             sessionStorage.setItem('tierlistImportData', e.target.result)
-    };
-    window.location.reload();
+            const data = getTierlistFromString(e.target.result)
+            reloadTierlist(data)
+        };
 }
 
 // Will check session storage for a queued import or existing session storage and resort to the app initial data if none of those exists (in that order)
 export const loadTierlist = () => {
-    const importData = getImportDataIfExists()
-    if ( importData !== null ) { 
-        sessionStorage.removeItem('tierlistImportData')
-        return importData 
-    }
     const sessionData = getSessionDataIfExists()
     if ( sessionData !== null ) { return sessionData }
     return initialData
 }
 
-const getImportDataIfExists = () => {
-    return getTierlistFromString(sessionStorage.getItem('tierlistImportData')) 
+export const loadDefaultTierlist = () => {
+    return initialData
 }
 
 const getSessionDataIfExists = () => {
