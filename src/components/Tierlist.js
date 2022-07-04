@@ -147,6 +147,7 @@ function TileList(props) {
                             minWidth: 1,
                             width: contentWidth,
                             backgroundColor: snapshot.isDraggingOver ? "#E0FFFF" : "#ffffff", // on drag container highlight
+                            transition: '1s all ease'
                         }}
                         
                     >
@@ -170,7 +171,7 @@ function Tile(props) {
                     ref={provided.innerRef} 
                     {...provided.draggableProps} 
                     {...provided.dragHandleProps} 
-                    sx={{ width: props.tileSize, height: props.tileSize, border: '1px solid lightgrey' }}
+                    sx={{ width: props.tileSize, height: props.tileSize }}
                 >
                    <img src={require('../assets'+props.tile.content)} width={props.tileSize+"px"} height={props.tileSize+"px"} alt={props.tile.alt} />
                 </Box>
