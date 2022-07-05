@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Button, Menu, MenuItem, Modal, Box, Backdr
 import { exportScreenshot, exportJSON } from '../data/Export'
 import { handleImport, loadDefaultTierlist } from '../data/Import'
 import HelpIcon from '@mui/icons-material/Help';
+import '../tierlist.css';
 
 export default function Navbar(props) {
     
@@ -21,8 +22,8 @@ export default function Navbar(props) {
                 
                 <Button sx={{ ml: 1 }} color="inherit" variant="outlined" onClick={handleReset}>Reset</Button>
                 <Button sx={{ ml: 1 }} color="inherit" variant="outlined" component="label">Import<input type="file" name="tierlist" hidden onChange={event => handleImport(event, props.reloadTierlist)} /></Button>
-                <ExportMenuButton exportJSON={() => exportJSON(props.dataForExports.data)} exportScreenshot={() => exportScreenshot(props.dataForExports)}/>
-                <HelpMenuButton />
+                <ExportMenuButton sx={{ ml: 1 }} exportJSON={() => exportJSON(props.dataForExports.data)} exportScreenshot={() => exportScreenshot(props.dataForExports)}/>
+                <HelpMenuButton sx={{ ml: 1 }} />
             </Toolbar>
         </AppBar>
     );
@@ -51,7 +52,7 @@ function ExportMenuButton(props) {
                 aria-controls={open ? 'export_menu_button' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
-                sx={{ ml: 1 }}
+                sx={props.sx}
             > 
                 Export
             </Button>
@@ -80,7 +81,7 @@ function ExportMenuButton(props) {
 }
 
 
-function HelpMenuButton() {
+function HelpMenuButton(props) {
 
     const [firstOpen, setFirstOpen] = React.useState(false)
     const [secondOpen, setSecondOpen] = React.useState(false)
@@ -96,7 +97,7 @@ function HelpMenuButton() {
 
     return (
         <React.Fragment>
-            <Button sx={{ ml: 1}} color="inherit" variant="outlined" onClick={() => setFirstOpen(true)}>  
+            <Button sx={props.sx} color="inherit" variant="outlined" onClick={() => setFirstOpen(true)}>  
                 <HelpIcon />
             </Button>
             <HelpModal
@@ -115,7 +116,7 @@ function HelpMenuButton() {
                 next={openThird}
                 nextButtonText={"next"}
                 title={"scrolling rows"}
-                description={"When rows become full, they will become horizontally scrollable. A future goal for tierstra will be for each tier to have multiple draggable lines to keep everything in view."}
+                description={"When rows become full, they will become horizontally scrollable. A future goal for tierstra will be for each tier to have multiple draggable lines to keep everything in view. Change row order by dragging tier name."}
             />
 
             <HelpModal

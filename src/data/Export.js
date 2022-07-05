@@ -2,17 +2,17 @@ import html2canvas from 'html2canvas';
 import ReactDOM from 'react-dom';
 
 // Will use a node reference and html2canvas to create a JPEF image to export
-export const exportScreenshot = ({ ref, data, tileSize }) => {
+export const exportScreenshot = ({ ref, data, tileLength }) => {
     if(!ref.current) {
         throw new Error('need a DOMNode for screenshot')
     }
     const element = ReactDOM.findDOMNode(ref.current);
-    const tileSizeBuffer = 3
+    const tileLengthBuffer = 3
 
     html2canvas(element, {
         useCORS: true,
-        windowWidth: getMaxWidth(data, tileSize, tileSizeBuffer),
-        windowHeight: getMaxHeight(data, tileSize),
+        windowWidth: getMaxWidth(data, tileLength, tileLengthBuffer),
+        windowHeight: getMaxHeight(data, tileLength),
     }).then(canvas => {
         exportAs(canvas.toDataURL('image/jpeg', 1.0), 'tierlist.jpeg');
     });
@@ -34,17 +34,15 @@ const exportAs = (uri, filename) => {
 };
 
 //these helper functions will make sure the JPEG image contains all the data's content in the screenshot
-const getMaxWidth = (data, tileSize, tileSizeBuffer) => {
+const getMaxWidth = (data, tileLength, tileLengthBuffer) => {
     let max = 0
     data.tierRowOrder.map((rowId) => {    
         let tileCount = data.rows[rowId].tileIds.length
-        max = tileCount > max ? tileCount : max
+        return max = tileCount > max ? tileCount : max
     })
-    console.log(max)
-    return (max + tileSizeBuffer) * tileSize
+    return (max + tileLengthBuffer) * tileLength
 }
 
-const getMaxHeight = (data, tileSize) => {
-    console.log(data.tierRowOrder.length)
-    return (data.tierRowOrder.length) * tileSize
+const getMaxHeight = (data, tileLength) => {
+    return (data.tierRowOrder.length) * tileLength
 }
