@@ -19,7 +19,6 @@ const TierCanvas = React.forwardRef((props, screenshotRef) => {
 
     // When a payload is sent from parent component, apply it to data if it is not null
     useEffect(() => {
-        console.log("payload incomming")
         if ( props.payload !== null ) setData(props.payload)
     }, [props.payload])
     
@@ -33,14 +32,15 @@ const TierCanvas = React.forwardRef((props, screenshotRef) => {
         })
     }, [data, props, tileLength])
 
+    
     // Console log when dragging for debugging
-    useEffect(() => {
-        if ( dragging ) {
-            console.log("now dragging tile", dragging)
-        } else {
-            console.log("No longer dragging")
-        }
-    }, [dragging])
+    // useEffect(() => {
+    //     if ( dragging ) {
+    //         console.log("now dragging tile", dragging)
+    //     } else {
+    //         console.log("No longer dragging")
+    //     }
+    // }, [dragging])
     
 
     // Will persist the data changes IF there is a destination for any type of drag
