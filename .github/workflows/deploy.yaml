@@ -25,7 +25,8 @@ jobs:
         run: |
           npm ci
           npm run build
-          npm test
+      #   npm test -> to be introduced when test cases implemented 
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
