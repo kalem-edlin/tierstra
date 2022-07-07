@@ -23,7 +23,6 @@ const ScrollContainer = styled.div`
     transition: 1s all ease;
 `
 
-
 const Wrapper = styled.div`
     background-color: ${(props) => props.isDraggingOver ? "#E0FFFF" : "#ffffff"};
     display: flex;
@@ -50,8 +49,7 @@ const List = (props) => {
                     <Wrapper 
                         isDraggingOver={snapshot.isDraggingOver} 
                         {...provided.droppableProps}
-                        ref={ref}
-                    >
+                        ref={ref}>
                         <ScrollContainer className={'scroll-container'}>
                             <ScrollBuffer tileLength={props.tileLength}>
                                 <DropZone ref={provided.innerRef} minWidth={width}>

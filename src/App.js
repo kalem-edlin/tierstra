@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/NavBar/Navbar";
 import TierCanvas from "./components/Tierlist"
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -31,16 +31,17 @@ function App() {
             <React.Fragment>
                 <CssBaseline enableColorScheme />
                 <ThemeProvider theme={darkTheme}>
-                    <Navbar dataForExports={dataForExports} reloadTierlist={reloadTierlist}/>
+                    <Navbar
+                        dataForExports={dataForExports}
+                        reloadTierlist={reloadTierlist}/>
                     <Routes>
                         <Route exact path="/tierstra" element={
                             <TierCanvas 
                                 ref={dataForExports.ref}  // ref needed to identify screenshot component
                                 payload={payload}
                                 setDataForExports={setDataForExports}
-                                dataForExports={dataForExports}
-                            />
-                        } />
+                                dataForExports={dataForExports} />
+                        }/>
                     </Routes>
                 </ThemeProvider>
             </React.Fragment>

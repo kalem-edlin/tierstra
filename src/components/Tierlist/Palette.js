@@ -11,14 +11,13 @@ const Palette = (props) => {
                 mt: 5,
                 borderRadius: '5px',
                 overflow: 'hidden'
-            }} >
+            }}>
             <List 
                 key={props.listId} 
                 listId={props.listId} 
                 tiles={props.tiles} 
                 tileLength={props.tileLength} 
-                dragging={props.dragging}
-            />
+                dragging={props.dragging}/>
         </Paper>
     )
 }
