@@ -1,6 +1,6 @@
 # tierstra
 
-### `npm start`
+https://kalem-edlin.github.io/tierstra/
 
 Tierstra is a new tierlisting web application that puts collaborative ranking first. Experience tierlist features you haven't seen before! Share you rankings of tierlists with your friends and get their opinions right back!
 
