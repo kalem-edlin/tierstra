@@ -29,24 +29,31 @@ const RowContainer = styled.div`
 `
 
 const Row = (props) => {
+    const { rowId, index, tiles, tileLength, dragging, title } = props
+
     return (
-        <Draggable draggableId={props.row.id} index={props.index} type={"row"}>
+        <Draggable
+            draggableId={rowId}
+            index={index}
+            type={"row"}>
             {(provided, snapshot) => (
                 <RowContainer 
                     ref={provided.innerRef} 
-                    {...provided.draggableProps}
-                >
+                    {...provided.draggableProps}>
                     <TierHandle 
                         tileLength={props.tileLength}
                         isDragging={snapshot.isDragging}
                         // drag handle props provided to make this box (small part of the row) the drag grab location
-                        {...provided.dragHandleProps} 
-                        
-                    >
-                        <Tier variant="h5"> {props.row.title} </Tier>
+                        {...provided.dragHandleProps}>
+                        <Tier variant="h5"> {title} </Tier>
                     </TierHandle>
                     <RowListContainer>
-                        <List key={props.row.id} listId={props.row.id} tiles={props.tiles} tileLength={props.tileLength} dragging={props.dragging} />
+                        <List
+                            key={rowId}
+                            listId={rowId}
+                            tiles={tiles}
+                            tileLength={tileLength}
+                            dragging={dragging} />
                     </RowListContainer>
                 </RowContainer>
             )}

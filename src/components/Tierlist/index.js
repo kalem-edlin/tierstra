@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { loadTierlist } from '../../data/Import'
@@ -63,26 +63,45 @@ const TierCanvas = React.forwardRef((props, screenshotRef) => {
     }
 
     return (
-        <DragDropContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
-            <Grid minWidth={300} sx={{ m: 8 }} alignItems={'center'} justifyContent={'center'} >
-                <Droppable droppableId="tierlist" direction="vertical" type={"row"}> 
+        <DragDropContext
+            onDragEnd={handleDragEnd}
+            onDragStart={handleDragStart}>
+            <Grid
+                minWidth={300}
+                sx={{ m: 8 }}
+                alignItems={'center'}
+                justifyContent={'center'} >
+                <Droppable
+                    droppableId="tierlist"
+                    direction="vertical"
+                    type={"row"}>
                     {provided => (
                         <Wrapper
                             ref={provided.innerRef} 
-                            {...provided.droppableProps} 
-                        >
+                            {...provided.droppableProps}>
                             <div ref={screenshotRef}>
                                 {data.tierRowOrder && data.tierRowOrder.map((rowId, index) => {
                                     const row = data.rows[rowId]
                                     const tiles = row.tileIds.map(tileId => data.tiles[tileId])
-                                    return <Row key={row.id} row={row} tiles={tiles} index={index} tileLength={tileLength} dragging={dragging}/>
+                                    return <Row
+                                        key={row.id}
+                                        rowId={row.id}
+                                        title={row.title}
+                                        tiles={tiles}
+                                        index={index}
+                                        tileLength={tileLength}
+                                        dragging={dragging}/>
                                 })}
                                 {provided.placeholder}
                             </div>
                         </Wrapper>
                     )}
                 </Droppable>
-                <Palette listId={'palette'}  tiles={data.rows['palette'].tileIds.map(tileId => data.tiles[tileId])} tileLength={tileLength} dragging={dragging}/>
+                <Palette
+                    listId={'palette'}
+                    tiles={data.rows['palette'].tileIds.map(tileId => data.tiles[tileId])}
+                    tileLength={tileLength}
+                    dragging={dragging}/>
             </Grid>
         </DragDropContext>
     )

@@ -13,9 +13,7 @@ export const handleImport = (event, reloadTierlist) => {
 
 // Will check session storage for a queued import or existing session storage and resort to the app initial data if none of those exists (in that order)
 export const loadTierlist = () => {
-    const sessionData = getSessionDataIfExists()
-    if ( sessionData !== null ) { return sessionData }
-    return initialData
+    return getSessionDataIfExists() ?? initialData
 }
 
 export const loadDefaultTierlist = () => {
