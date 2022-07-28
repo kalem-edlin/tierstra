@@ -2,9 +2,7 @@ import React from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import styled from '@emotion/styled';
 import { useResizeDetector } from 'react-resize-detector'
-import Tile from './Tile'
-import '../../tierlist.css'
-
+import { Tile } from './Tile'
 
 const DropZone = styled.div`
     min-width: ${(props) => props.minWidth}px;

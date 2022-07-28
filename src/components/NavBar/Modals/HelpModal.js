@@ -1,7 +1,7 @@
 import { Backdrop, Box, Button, Modal, Typography } from "@mui/material";
 import React from 'react';
 
-export function HelpModal(props) {
+const HelpModal = (props) => {
     const style = {
         position: 'absolute',
         top: '50%',
@@ -50,3 +50,5 @@ export function HelpModal(props) {
         </Modal>
     )
 }
+
+export default HelpModal

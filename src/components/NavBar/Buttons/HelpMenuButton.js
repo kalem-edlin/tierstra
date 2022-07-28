@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from "@mui/material";
 import HelpIcon from "@mui/icons-material/Help";
-import { HelpModal } from "./HelpModal";
+import HelpModal from "../Modals/HelpModal";
 
-export function HelpMenuButton(props) {
+export const HelpMenuButton = (props) => {
 
     const [firstOpen, setFirstOpen] = React.useState(false)
     const [secondOpen, setSecondOpen] = React.useState(false)
@@ -53,3 +53,5 @@ export function HelpMenuButton(props) {
         </React.Fragment>
     )
 }
+
+export default HelpMenuButton

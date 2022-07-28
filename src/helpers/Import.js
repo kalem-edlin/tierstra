@@ -1,4 +1,4 @@
-import initialData from '../data/InitialData'
+import { empty } from './Data'
 
 // Will import a selected file as a new import session storage item to be loaded in the canvas
 export const handleImport = (event, reloadTierlist) => {
@@ -13,11 +13,11 @@ export const handleImport = (event, reloadTierlist) => {
 
 // Will check session storage for a queued import or existing session storage and resort to the app initial data if none of those exists (in that order)
 export const loadTierlist = () => {
-    return getSessionDataIfExists() ?? initialData
+    return getSessionDataIfExists() ?? empty
 }
 
-export const loadDefaultTierlist = () => {
-    return initialData
+export const loadEmptyTierlist = () => {
+    return empty
 }
 
 const getSessionDataIfExists = () => {

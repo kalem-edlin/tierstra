@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Menu, MenuItem } from "@mui/material";
 
-export function ExportMenuButton(props) {
+export const ExportMenuButton = (props) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -51,3 +51,5 @@ export function ExportMenuButton(props) {
         </React.Fragment>
     )
 }
+
+export default ExportMenuButton

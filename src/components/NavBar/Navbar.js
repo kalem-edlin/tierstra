@@ -1,17 +1,17 @@
 import React from 'react'
 import { AppBar, Button, Toolbar, Typography } from '@mui/material'
-import { exportJSON, exportScreenshot } from '../../data/Export'
-import { handleImport, loadDefaultTierlist } from '../../data/Import'
-import '../../tierlist.css';
-import { ExportMenuButton } from "./ExportMenuButton";
-import { HelpMenuButton } from "./HelpMenuButton";
+import { exportJSON, exportScreenshot } from '../../helpers/Export'
+import { handleImport, loadEmptyTierlist } from '../../helpers/Import'
+import ExportMenuButton from "./Buttons/ExportMenuButton";
+import ExampleMenuButton from './Buttons/ExampleMenuButton';
+import HelpMenuButton from "./Buttons/HelpMenuButton";
+
 
 export default function Navbar(props) {
 
-    // Will clear the session storage and reload the tierlist component
-    const handleReset = () => {
+    const handleNew = () => {
         sessionStorage.removeItem('tierlistData')
-        props.reloadTierlist(loadDefaultTierlist())
+        props.reloadTierlist(loadEmptyTierlist())
     }
 
     return (
@@ -27,9 +27,12 @@ export default function Navbar(props) {
                     sx={{ ml: 1 }}
                     color="inherit"
                     variant="outlined"
-                    onClick={handleReset}>
-                    Reset
+                    onClick={handleNew}>
+                    New
                 </Button>
+                <ExampleMenuButton
+                    sx={{ ml: 1 }}
+                    reloadTierlist={props.reloadTierlist}/>
                 <Button
                     sx={{ ml: 1 }}
                     color="inherit"
