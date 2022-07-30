@@ -5,7 +5,7 @@ import Content from './Content'
 
 
 const getOnDeleteStyle = (style: any, snapshot: any) => {
-    if ( !snapshot.isDropAnimating || snapshot.draggingOver !== "tile-delete") {
+    if ( !snapshot.isDropAnimating || snapshot.draggingOver !== 'tile-delete') {
         return style
     }
     return {
@@ -17,6 +17,7 @@ const getOnDeleteStyle = (style: any, snapshot: any) => {
 }
 
 export const Tile = (props: TileProps) => {
+    console.log(props.tile.alt)
 
     return (
         <Draggable
@@ -30,8 +31,10 @@ export const Tile = (props: TileProps) => {
                     {...provided.dragHandleProps}
                     style={getOnDeleteStyle(provided.draggableProps.style, snapshot)}>
                         <Content 
-                            tileLength={props.data}
-                            {...props.tile}
+                            tileLength={props.tileLength}
+                            content={props.tile.content}
+                            alt={props.tile.alt}
+                            crop={props.tile.crop}
                         />
                 </div>
             )}

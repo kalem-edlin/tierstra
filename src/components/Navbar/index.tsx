@@ -39,7 +39,7 @@ export default function Navbar(props: NavbarProps) {
     
     const exportMenuItems = [
         { text: 'as JSON', onClick: () => exportJSON(props.exports.data) },
-        { text: 'as JPEG', onClick: () => exportScreenshot(props.exports) },
+        { text: 'as JPEG', onClick: () => exportScreenshot(props.exports, props.screenshotRef) },
     ]
 
     return (

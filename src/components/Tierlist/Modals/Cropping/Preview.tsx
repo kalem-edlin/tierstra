@@ -86,7 +86,7 @@ const Preview = (props: CropPreviewProps) => {
                     onClick={onAddTileClick} 
                     variant="contained" 
                     color="success" 
-                    sx={{color: "white"}} >
+                    sx={{color: 'white'}} >
                     Add Tile
                 </Button>
                 {addMultiple &&

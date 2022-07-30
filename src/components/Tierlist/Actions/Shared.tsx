@@ -20,11 +20,11 @@ export const HoverSection = styled(Box)<HoverSectionProps>`
     overflow: hidden;
     transition: transform .5s ease-out;
     transition-delay: .3s;
-    height: ${(props)=>(props.height)}px;
-    background-color: ${(props)=>(props.color)};
-    ${(props) => (props.center && `align-items: center;`)}
+    height: ${props => props.height}px;
+    background-color: ${props => props.color};
+    ${props => props.center && `align-items: center;`}
     border-radius: 0px 0px ${BORDER_RADIUS_CONSTANT}px ${BORDER_RADIUS_CONSTANT}px;
-    transform: translate(0, -${(props) => (props.height-BORDER_RADIUS_CONSTANT)}px);
+    transform: translate(0, -${props => props.height-BORDER_RADIUS_CONSTANT}px);
     &:hover {
         transform: translate(0, 0);
     }

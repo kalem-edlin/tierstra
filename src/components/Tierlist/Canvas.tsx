@@ -21,6 +21,7 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
     const [data, setData] = useState<Tierlist>(loadTierlist())
     const [tileLength] = useState<number>(TILE_LENGTH_CONSTANT)
     const [dragging, setDragging] = useState<string | null>(null)
+    const { updateExports } = props
     const baseTierlistProps = {
         data: data,
         tileLength: tileLength,
@@ -35,8 +36,8 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
     // On data change, will update session storage and the SSOT for exports and tilelength data for screenshot bounds calculations
     useEffect(() => {
         sessionStorage.setItem('tierlistData', JSON.stringify(data))
-        props.updateExports(data, tileLength)
-    }, [data, tileLength, props])
+        updateExports(data, tileLength)
+    }, [data, tileLength, updateExports])
 
     // Will persist the data changes IF there is a destination for any type of drag
     const handleDragEnd = (result: DropResult) => {

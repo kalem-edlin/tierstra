@@ -31,7 +31,6 @@ declare module "data-types" {
     }
 
     export interface Exports {
-        screenshotRef: React.RefObject<HTMLElement>;
         data: Tierlist | null;
         tileLength: number | null;
     }

@@ -88,6 +88,7 @@ declare module "prop-types" {
     // Navbar
 
     export interface NavbarProps {
+        screenshotRef: RefObject<HTMLElement>;
         exports: Exports;
         reloadTierlist: ReloadTierlist;
     }

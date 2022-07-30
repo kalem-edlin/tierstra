@@ -13,7 +13,7 @@ export const handleImport = (
         return 
     }
     const fileReader = new FileReader()
-    fileReader.readAsText(files[0], "UTF-8")
+    fileReader.readAsText(files[0], 'UTF-8')
     fileReader.onload = e => {
         const result = e.target?.result as string
         if ( result === null ) { 
@@ -40,12 +40,12 @@ const getSessionDataIfExists = () => {
 }
 
 const getTierlistFromString = (string: string | null | undefined) => {
-    if ( string === "undefined" || string === null) {
+    if ( string === 'undefined' || string === null) {
         return null
     } else {
         const tierlist = JSON.parse(string!)
         if ( tierlist.tierOrder === undefined) {
-            alert("The session storage data is corrupt. Resetting...")
+            alert('The session storage data is corrupt. Resetting...')
             return null
         }
         return tierlist

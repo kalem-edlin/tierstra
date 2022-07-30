@@ -7,13 +7,13 @@ import { useResizeDetector } from 'react-resize-detector';
 import { Tile } from './Tile';
 
 const DropZone = styled(Box)<{minWidth: number}>`
-    min-width: ${(props) => props.minWidth}px;
+    min-width: ${props => props.minWidth}px;
     height:  100%;
     display: flex;
 `
 
 const ScrollBuffer = styled(Box)<ListProps>`
-    height: ${(props) => props.tileLength}px;
+    height: ${props => props.tileLength}px;
 `
 
 // ISSUE006
@@ -24,7 +24,7 @@ const ScrollContainer = styled(Box)`
 `
 
 const Wrapper = styled(Box)<{isDraggingOver: boolean}>`
-    background-color: ${(props) => props.isDraggingOver ? "#E0FFFF" : "white"};
+    background-color: ${props => props.isDraggingOver ? "#E0FFFF" : "white"};
     display: flex;
     flex-direction: row;
     height: 100%;
@@ -32,7 +32,7 @@ const Wrapper = styled(Box)<{isDraggingOver: boolean}>`
 `
 
 const ListContainer = styled(Box)<ListProps>`
-    height: ${(props) => props.tileLength}px;
+    height: ${props => props.tileLength}px;
     width: 100%;
 `
 
@@ -48,7 +48,7 @@ const List = (props: ListProps) => {
                         isDraggingOver={snapshot.isDraggingOver} 
                         {...provided.droppableProps}
                         ref={ref}>
-                        <ScrollContainer className={'scroll-container'}>
+                        <ScrollContainer className="scroll-container">
                             <ScrollBuffer {...props}>
                                 <DropZone ref={provided.innerRef} minWidth={width ?? 0}>
                                     {props.tiles.map((tile, index) => {

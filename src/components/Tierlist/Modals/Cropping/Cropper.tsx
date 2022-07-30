@@ -10,13 +10,13 @@ const CROP_AREA_ASPECT = 1 / 1 // changing this would mean:
 // > EG width = heightConstant * aspect ratio
 
 const Wrapper = styled(Box)`
+    height: ${600/CROP_AREA_ASPECT}px;
     top: 0px; 
     left: 0px; 
     position: relative; 
     background-color: white; 
     color: white; 
     width: 600px; 
-    height: ${600/CROP_AREA_ASPECT}px;
 `
 
 const ZoomCropper = (props: CropperProps) => {

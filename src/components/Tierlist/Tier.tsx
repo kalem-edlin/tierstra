@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { TierProps } from 'prop-types'
 import React from 'react'
@@ -11,8 +11,8 @@ const RowListContainer = styled(Box)`
     width: 0px;
 `
 
-const TierHandle = styled(Paper)<{tileLength: number}>`
-    min-width: ${(props)=>(props.tileLength)}px;
+const TierHandle = styled(Box)<TierProps>`
+    min-width: ${props => props.tileLength}px;
     border: 1px solid grey;
     border-radius: 5px 0px 0px 5px;
     background-color: white;
@@ -46,7 +46,7 @@ const Tier = (props: TierProps) => {
                     {...provided.draggableProps}>
                     <TierHandle 
                         className="centered"
-                        tileLength={props.tileLength}
+                        {...props}
                         {...provided.dragHandleProps} >
                         <Typography gutterBottom variant="h5">
                             {props.tier.title}

@@ -23,8 +23,8 @@ export const NavbarHelp = (props: ModalProps) => {
             <Modal
                 open={props.open}
                 onClose={props.onClose}
-                aria-labelledby={"help-modal"}
-                aria-describedby={"help-modal-description"}
+                aria-labelledby="help-modal"
+                aria-describedby="help-modal-description"
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
@@ -34,7 +34,7 @@ export const NavbarHelp = (props: ModalProps) => {
                     <Typography
                         variant="h5"
                         component="h2"
-                        fontWeight={"bold"}>
+                        fontWeight="bold">
                         Title
                     </Typography>
                     <Typography sx={{mt: 2}}>

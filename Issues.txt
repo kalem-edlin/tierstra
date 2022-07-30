@@ -21,4 +21,11 @@ removing overflow-x: scroll; will make the scroll bar only show for rows with fu
 Not reeeally sure whats going on with the 0px width. Kinda forgot. Could be causing complications further down. Not worth fixing until proposed scroll alternative fix
 
 'ISSUE008':
- The styling (sx, styles etc) logic with the calculations looks better in the return render part than in styled(component)s - alternative styling pattern case (PLZ REVIEW)
+ The styling (sx, styles etc) logic with the calculations looks better in the return render part than in styled(component)s 
+ - alternative styling pattern case (PLZ REVIEW)
+
+'ISSUE009':
+I had to use a callback function that would not recalculate itself in the canvas useEffect for updating exports. 
+This begs the question: Is there anyway to make sure Tierlist Data or  tileLength is only if it has changed? Will this save performance
+Callbacks are also generally used to increase performance. Where else can I use these? Im sure alot of updating is happening when dragging something. Performance gains?
+TLDR: why would I NOT use a callback in place of my functions dealing with states

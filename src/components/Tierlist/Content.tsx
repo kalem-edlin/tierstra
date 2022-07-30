@@ -10,7 +10,8 @@ const Wrapper = styled(Box)<ContentProps>`
     overflow: hidden;
     height: 100%;
     position: relative;
-    width: ${(props) => (props.tileLength)}px;
+    width: 150px;
+    width: ${props => props.tileLength}px;
 `
 
 const getScale = (tileLength: number, crop: CropData) => {
@@ -34,7 +35,7 @@ const Content = (props: ContentProps) => {
             <Wrapper {...props} >
                 { loading && 
                     <CircularProgress 
-                        color={'secondary'}
+                        color="secondary"
                         sx={{
                             top: (props.tileLength-(width ?? 0))/2, 
                             left: (props.tileLength-(width ?? 0))/2, 
@@ -55,6 +56,7 @@ const Content = (props: ContentProps) => {
                 }}>
                     <img 
                         src={props.content} 
+                        alt={props.alt}
                         onLoad={() => setLoading(false)} />
                 </div>
             </Wrapper>

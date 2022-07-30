@@ -15,7 +15,7 @@ interface ActionButtonProps {
 }
 
 const ActionButtonWrapper = styled(Button)<ActionButtonProps>`
-    height: ${(props) => (props.height-BORDER_RADIUS_CONSTANT)}px; 
+    height: ${props => props.height-BORDER_RADIUS_CONSTANT}px; 
     width: ${1/3};
     color: white; 
     background-color: gray;

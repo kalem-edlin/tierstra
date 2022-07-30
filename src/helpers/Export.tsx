@@ -1,10 +1,11 @@
 import { Exports, Tierlist } from 'data-types';
 import html2canvas from 'html2canvas';
+import { RefObject } from 'react';
 import ReactDOM from 'react-dom';
 
 // Will use a node reference and html2canvas to create a JPEF image to export
-export const exportScreenshot = (exports: Exports) => {
-    const { screenshotRef, data, tileLength } = exports
+export const exportScreenshot = (exports: Exports, screenshotRef: RefObject<HTMLElement>) => {
+    const { data, tileLength } = exports
 
     if(!screenshotRef.current) {
         // ISSUE002
@@ -15,7 +16,7 @@ export const exportScreenshot = (exports: Exports) => {
 
     if ( element === null || data === null || tileLength === null ) {
         // ISSUE002
-        alert("Tierlist cannot be screenshotted as it does not exist")
+        alert('Tierlist cannot be screenshotted as it does not exist')
         return 
     }
 
@@ -32,7 +33,7 @@ export const exportScreenshot = (exports: Exports) => {
 export const exportJSON = (data: Tierlist | null) => {
     if ( data === null ) {
         // ISSUE002
-        alert("Tierlist cannot be exported as it does not exist")
+        alert('Tierlist cannot be exported as it does not exist')
         return 
     }
     const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(

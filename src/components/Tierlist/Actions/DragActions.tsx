@@ -28,7 +28,7 @@ const DragActions = (props: DragActionsProps) => {
             {props.dragging !== null && props.dragging === 'tile' &&
                 <HoverSection 
                     height={props.tileLength+BORDER_RADIUS_CONSTANT}
-                    color='#BE7B7B'
+                    color="#BE7B7B"
                     center={true}
                     onMouseEnter={() => setDropDisabled(false)}
                     onMouseLeave={() => setDropDisabled(true)}
