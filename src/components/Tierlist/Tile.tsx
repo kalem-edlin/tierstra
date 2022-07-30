@@ -1,42 +1,43 @@
+import { TileProps } from 'prop-types'
 import React from 'react'
-import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd'
-import '../../tierlist.css';
+import Content from './Content'
 
-const Wrapper = styled.div`
-    width: ${(props: any) => props.tileLength}px;
-    height: ${(props: any) => props.tileLength}px;
-`
 
-type TileProps = {
-    key: any,
-    tile: any,
-    index: any,
-    tileLength: any,
+const getOnDeleteStyle = (style: any, snapshot: any) => {
+    if ( !snapshot.isDropAnimating || snapshot.draggingOver !== 'tile-delete') {
+        return style
+    }
+    return {
+        ...style,
+        opacity: 0,
+        transform: 'scale(0)',
+        transition: 'all 1.5s',
+    }
 }
 
-const Tile = (props: TileProps) => {
+export const Tile = (props: TileProps) => {
+    console.log(props.tile.alt)
+
     return (
         <Draggable
             draggableId={props.tile.id}
             index={props.index}
-            // type={"tile"}
         >
-            {provided => (
-                <Wrapper
+            {(provided, snapshot) => (
+                <div
                     ref={provided.innerRef} 
                     {...provided.draggableProps} 
-                    {...provided.dragHandleProps}>
-                    <img 
-                        src={require('../../assets'+props.tile.content)} 
-                        width={props.tileLength-5+"px"} 
-                        height={props.tileLength-5+"px"} 
-                        alt={props.tile.alt} 
-                    />
-                </Wrapper>
+                    {...provided.dragHandleProps}
+                    style={getOnDeleteStyle(provided.draggableProps.style, snapshot)}>
+                        <Content 
+                            tileLength={props.tileLength}
+                            content={props.tile.content}
+                            alt={props.tile.alt}
+                            crop={props.tile.crop}
+                        />
+                </div>
             )}
         </Draggable>
     )
 }
-
-export default Tile
