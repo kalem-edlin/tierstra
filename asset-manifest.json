@@ -1,29 +1,13 @@
 {
   "files": {
-    "main.css": "/tierstra/static/css/main.8fd5a745.css",
-    "main.js": "/tierstra/static/js/main.88aafcc3.js",
-    "static/media/oldies.png": "/tierstra/static/media/oldies.2c376bd4b1ddc6a155c9.png",
-    "static/media/electronic.png": "/tierstra/static/media/electronic.43c104c9ec7dd05f600f.png",
-    "static/media/reggae.png": "/tierstra/static/media/reggae.a9fef6d5a69c1eebe845.png",
-    "static/media/80s.png": "/tierstra/static/media/80s.62cc8cb384e09c79d949.png",
-    "static/media/randb.png": "/tierstra/static/media/randb.e03c24d35672f5200be4.png",
-    "static/media/rap.png": "/tierstra/static/media/rap.a7cd0e12fd3306b8834c.png",
-    "static/media/jazz.png": "/tierstra/static/media/jazz.ce44f9d1473c506d3f55.png",
-    "static/media/pop.png": "/tierstra/static/media/pop.056c39fd9a263f6ca4cd.png",
-    "static/media/country.png": "/tierstra/static/media/country.a81cb3be333afc08a575.png",
-    "static/media/90s.png": "/tierstra/static/media/90s.c381a57effa15f97206e.png",
-    "static/media/rock.png": "/tierstra/static/media/rock.53db04c8fe22233a970f.png",
-    "static/media/blues.png": "/tierstra/static/media/blues.72bea7a33d67c1ac0612.png",
-    "static/media/metal.png": "/tierstra/static/media/metal.16352cf38bce00eb8475.png",
-    "static/media/latin.png": "/tierstra/static/media/latin.63c1e830b1ebaf457c92.png",
-    "static/media/folk.png": "/tierstra/static/media/folk.4ea35e6537e0d1cb6d11.png",
-    "static/media/classic.png": "/tierstra/static/media/classic.4172fbb1efbaf25478c6.png",
+    "main.css": "/tierstra/static/css/main.34e8ef6c.css",
+    "main.js": "/tierstra/static/js/main.67d45dbc.js",
     "index.html": "/tierstra/index.html",
-    "main.8fd5a745.css.map": "/tierstra/static/css/main.8fd5a745.css.map",
-    "main.88aafcc3.js.map": "/tierstra/static/js/main.88aafcc3.js.map"
+    "main.34e8ef6c.css.map": "/tierstra/static/css/main.34e8ef6c.css.map",
+    "main.67d45dbc.js.map": "/tierstra/static/js/main.67d45dbc.js.map"
   },
   "entrypoints": [
-    "static/css/main.8fd5a745.css",
-    "static/js/main.88aafcc3.js"
+    "static/css/main.34e8ef6c.css",
+    "static/js/main.67d45dbc.js"
   ]
 }
