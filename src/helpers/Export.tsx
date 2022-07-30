@@ -1,13 +1,23 @@
+import { Exports, Tierlist } from 'data-types';
 import html2canvas from 'html2canvas';
 import ReactDOM from 'react-dom';
 
 // Will use a node reference and html2canvas to create a JPEF image to export
-export const exportScreenshot = ({ ref, data, tileLength }) => {
-    if(!ref.current) {
+export const exportScreenshot = (exports: Exports) => {
+    const { screenshotRef, data, tileLength } = exports
+
+    if(!screenshotRef.current) {
+        // ISSUE002
         throw new Error('need a DOMNode for screenshot')
     }
-    const element = ReactDOM.findDOMNode(ref.current);
+    const element = ReactDOM.findDOMNode(screenshotRef.current) as HTMLElement;
     const tileLengthBuffer = 3
+
+    if ( element === null || data === null || tileLength === null ) {
+        // ISSUE002
+        alert("Tierlist cannot be screenshotted as it does not exist")
+        return 
+    }
 
     html2canvas(element, {
         useCORS: true,
@@ -19,14 +29,19 @@ export const exportScreenshot = ({ ref, data, tileLength }) => {
 }
 
 // Will use the tierlist JSON representation to export a .JSON file
-export const exportJSON = (data) => {
+export const exportJSON = (data: Tierlist | null) => {
+    if ( data === null ) {
+        // ISSUE002
+        alert("Tierlist cannot be exported as it does not exist")
+        return 
+    }
     const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
         JSON.stringify(data)
     )}`
     exportAs(jsonString, 'tierlist.json')
 }
 
-const exportAs = (uri, filename) => {
+const exportAs = (uri: string, filename: string) => {
     const link = document.createElement('a')
     link.href = uri
     link.download = filename
@@ -34,15 +49,15 @@ const exportAs = (uri, filename) => {
 };
 
 //these helper functions will make sure the JPEG image contains all the data's content in the screenshot
-const getMaxWidth = (data, tileLength, tileLengthBuffer) => {
+const getMaxWidth = (data: Tierlist, tileLength: number, tileLengthBuffer: number) => {
     let max = 0
-    data.tierRowOrder.map((rowId) => {    
-        let tileCount = data.rows[rowId].tileIds.length
+    data.tierOrder.map((tierId) => {    
+        let tileCount = data.tiers[tierId].tileIds.length
         return max = tileCount > max ? tileCount : max
     })
     return (max + tileLengthBuffer) * tileLength
 }
 
-const getMaxHeight = (data, tileLength) => {
-    return (data.tierRowOrder.length) * tileLength
+const getMaxHeight = (data: Tierlist, tileLength: number) => {
+    return (data.tierOrder.length) * tileLength
 }

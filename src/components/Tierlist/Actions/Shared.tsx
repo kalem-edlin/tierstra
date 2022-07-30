@@ -1,11 +1,6 @@
 import { Box } from "@mui/material";
 import { styled } from '@mui/material/styles';
 
-export interface ActionsProps {
-    tileLength: number;
-    display: boolean;
-}
-
 export const BORDER_RADIUS_CONSTANT = 30
 
 interface HoverSectionProps {
@@ -14,6 +9,7 @@ interface HoverSectionProps {
     center: boolean;
 }
 
+// A Section that will drop into position with its contents from behind the above element
 export const HoverSection = styled(Box)<HoverSectionProps>`
     width: 100%;
     height: ${(props)=>(props.height)}px;

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Backdrop, Box, Modal, Paper, InputBase, IconButton } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
-import Cropper from './Cropping/ZoomCrop'
-import CropPreview from './Cropping/CropPreview'
 import styled from '@emotion/styled';
+import SearchIcon from '@mui/icons-material/Search';
+import { Backdrop, Box, IconButton, InputBase, Modal, Paper } from "@mui/material";
+import { CropData } from 'data-types';
+import { AddTileModalProps } from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import Cropper from './Cropping/Cropper';
+import CropPreview from './Cropping/CropPreview';
 
-// example image link for multiple images
+// example image link for multiple image addition
 // https://i.ibb.co/Wz9FWHY/Music-Genres-500x500-removebg-preview.png
 
 const ModalWrapper = styled.div`
@@ -26,10 +28,10 @@ const ModalSection = styled.div`
     margin-bottom: 3%;
 `
 
-const AddTileModal = (props) => {
-    const [imageLink, setImageLink] = useState(null)
-    const [searchValue, setSearchValue] = useState('')
-    const [cropData, setCropData] = useState(null)
+const AddTileModal = (props: AddTileModalProps) => {
+    const [imageLink, setImageLink] = useState<string | null>(null)
+    const [searchValue, setSearchValue] = useState<string>('')
+    const [crop, setCrop] = useState<CropData | null>(null)
 
     const handleSubmit = () => {
         console.log(searchValue)
@@ -39,18 +41,22 @@ const AddTileModal = (props) => {
     const handleClose = () => {
         setSearchValue('')
         setImageLink(null)
-        setCropData(null)
-        props.close()
+        setCrop(null)
+        props.onClose()
     }
 
     const handleAddTile = () => {
-        props.addTile({
-            ...cropData,
-            content: imageLink, 
-        })
+        if ( imageLink !== null ) {
+            props.addTile({
+                crop: {
+                    ...crop,
+                },
+                content: imageLink, 
+            })
+        }
     }
 
-    //This may be overkill
+    // This may be overkill but will hide the cropper when searchValue is nothing
     useEffect(() => {
         if (searchValue === '') {
             setImageLink(null)
@@ -86,12 +92,18 @@ const AddTileModal = (props) => {
                         </Paper>
                     </Box>
                     {imageLink !== null &&
-                        <Cropper setCropData={setCropData} imageLink={imageLink} />
+                        <Cropper 
+                            imageLink={imageLink} 
+                            setCrop={setCrop} />
                     }
                 </ModalSection>
-                {cropData &&
+                {crop &&
                     <ModalSection>
-                        <CropPreview close={handleClose} onAddTileClick={handleAddTile} cropData={cropData} imageLink={imageLink} />
+                        <CropPreview 
+                            crop={crop}
+                            imageLink={imageLink!}
+                            close={handleClose} 
+                            onAddTileClick={handleAddTile} />
                     </ModalSection>
                 }
             </ModalWrapper>

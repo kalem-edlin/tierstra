@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
 import { Paper } from '@mui/material'
-import List from './List'
-import AddTileModal from './Modals/AddTile'
+import { PaletteProps } from 'prop-types'
+import React, { useState } from 'react'
 import DragActions from './Actions/DragActions'
 import PaletteActions from './Actions/PaletteActions'
+import List from './List'
+import AddTileModal from './Modals/AddTile'
 
 
-const Palette = (props) => {
+
+const Palette = (props: PaletteProps) => {
     const [displayAddModal, setDisplayAddModal] = useState(false)
+    const paletteId = "palette"
+
+    const tiles = props.data.tiers[paletteId].tileIds.map(
+        (tileId: String) => props.data.tiles[tileId]
+    )
     
     return (
         <React.Fragment>
@@ -20,29 +27,25 @@ const Palette = (props) => {
                     mt: 6,
                 }}>
                 <List 
-                    key={props.listId} 
-                    listId={props.listId} 
-                    tiles={props.tiles} 
-                    tileLength={props.tileLength} 
-                    dragging={props.dragging}/>
+                    key={paletteId} 
+                    {...props}
+                    listId={paletteId}
+                    tiles={tiles}/>
             </Paper>
 
             {/* The following have conditional displays */}
             <DragActions 
-                tileLength={props.tileLength}
-                dragging={props.dragging} />
-            {props.dragging === null &&
+                {...props} />
+            {(props.dragging === null || props.dragging === 'tier') &&
                 <PaletteActions 
-                    onAddClick={()=>{setDisplayAddModal(true)}}
-                    onShuffleClick={props.shuffleTiles}
-                    onResetClick={props.resetTiles}
-                    tileLength={props.tileLength} />
+                    {...props}
+                    onAddClick={()=>{setDisplayAddModal(true)}}/>
             }
             <AddTileModal 
                 //should this AddTileModal be implemented here? Or further towards truth source (canvas?)
+                {...props}
                 open={displayAddModal}
-                close={()=>{setDisplayAddModal(false)}}
-                addTile={props.addTile}
+                onClose={()=>{setDisplayAddModal(false)}}
             />
         </React.Fragment>
            

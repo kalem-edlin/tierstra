@@ -1,0 +1,15 @@
+'ISSUE001':
+Need to know how to remove the first unused parameter from a function
+
+'ISSUE002':
+Perhaps an Error handling framework should be created for issues (alert or console error?)
+EG throw new ExportError.nodeMissing
+
+'ISSUE003':
+Value should be the name of the tile (when information like that is carried)
+
+'ISSUE004':
+Where can I position constants so other files (dragActions) can refer to things like DELETE_TILE_DROPPABLE_ID?
+
+'ISSUE005':
+Deep copies using JSON serialization is needed as examples hold their state when the same one is reloaded! (issues when deleting)

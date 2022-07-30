@@ -1,20 +1,11 @@
-import React, { ReactElement } from 'react'
+import AddIcon from '@mui/icons-material/Add';
+import ReplayIcon from '@mui/icons-material/Replay';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
 import { Button } from "@mui/material";
 import { styled } from '@mui/material/styles';
-import AddIcon from '@mui/icons-material/Add';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-import ReplayIcon from '@mui/icons-material/Replay';
-import { 
-    ActionsProps, 
-    HoverSection, 
-    BORDER_RADIUS_CONSTANT
-} from './Shared'
-
-interface PaletteActionsProps extends ActionsProps {
-    onAddClick: () => void;
-    onShuffleClick: () => void;
-    onResetClick: () => void;
-}
+import { PaletteActionsProps } from 'prop-types';
+import React, { ReactElement } from 'react';
+import { BORDER_RADIUS_CONSTANT, HoverSection } from './Shared';
 
 interface ActionButtonProps {
     height: number;
@@ -61,13 +52,13 @@ const PaletteActions = (props: PaletteActionsProps) => {
                 <ActionButton 
                     height={wrapperHeight}
                     icon={<ShuffleIcon/>}
-                    onClick={props.onShuffleClick}>
+                    onClick={props.shuffleTiles}>
                     Shuffle Tiles
                 </ActionButton>
                 <ActionButton 
                     height={wrapperHeight}
                     icon={<ReplayIcon/>}
-                    onClick={props.onResetClick}>
+                    onClick={props.resetTiles}>
                     Reset List
                 </ActionButton>
             </HoverSection>

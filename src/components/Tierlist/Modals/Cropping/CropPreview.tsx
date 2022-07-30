@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { Grid, Box, Typography, Button } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import { ImageDisplay } from '../../Tile'
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { Box, Button, Grid, Typography } from "@mui/material"
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import { styled } from '@mui/material/styles'
+import { CropPreviewProps } from 'prop-types'
+import React, { useState } from 'react'
+import Content from '../../Content'
 
-const PreviewDisplayWrapper = styled(Box)<any>`
+const PreviewDisplayWrapper = styled(Box)`
     border-left: 1px solid black;
     border-right: 1px solid black;
     width: 150px;
     height: 150px;
 `
 
-const CropPreview = (props: any) => {
+const CropPreview = (props: CropPreviewProps) => {
     const [addMultiple, setAddMultiple] = useState(false)
 
     const onAddTileClick = () => {
@@ -20,6 +21,11 @@ const CropPreview = (props: any) => {
         if ( !addMultiple ) {
             props.close()
         }
+    }
+
+    // ISSUE001
+    const handleAddMultiple = (_:any, checked: boolean) => { 
+        setAddMultiple(checked)
     }
 
     return (
@@ -32,7 +38,7 @@ const CropPreview = (props: any) => {
                 <Typography variant="h6" color="ButtonText">Tile:</Typography>
                 <FormControlLabel 
                     checked={addMultiple}
-                    onChange={(event: any)=>{setAddMultiple(event.target.checked)}}
+                    onChange={handleAddMultiple}
                     control={
                         <Checkbox sx={{
                             color: 'gray',
@@ -44,10 +50,10 @@ const CropPreview = (props: any) => {
                     label="Add Multiple"/>
             </Box>
             <PreviewDisplayWrapper>
-                <ImageDisplay 
+                <Content 
                     content={props.imageLink} 
                     tileLength={150} 
-                    cropData={props.cropData} 
+                    crop={props.crop} 
                 />
             </PreviewDisplayWrapper>
             <Box sx={{width: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>

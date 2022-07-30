@@ -1,42 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Droppable } from 'react-beautiful-dnd'
-import { 
-    ActionsProps, 
-    HoverSection, 
-    BORDER_RADIUS_CONSTANT
-} from './Shared'
+import { styled } from '@mui/material/styles';
+import { DragActionsProps } from 'prop-types';
+import React, { useState } from 'react';
+import { Droppable } from 'react-beautiful-dnd';
+import { BORDER_RADIUS_CONSTANT, HoverSection } from './Shared';
 
-interface DragActionsProps extends ActionsProps  {
-    dragging: any;
-}
-
-
-const DeleteStyledIcon = styled(DeleteIcon)<any>`
+const DeleteStyledIcon = styled(DeleteIcon)`
     color: white;
     width: 30%;
     height: 30%;
 `
 
-// Component will leave a disabled droppable area to and 
-// will not be disabled until mouse hovers the dropsection
+// Component will leave a disabled droppable area to and will not be disabled until mouse hovers the dropsection
 const DragActions = (props: DragActionsProps) => {
     const [dropDisabled, setDropDisabled] = useState(true)
 
-    useEffect(() => {
-        console.log(dropDisabled)
-    }, [dropDisabled])
-    
-    useEffect(() => {
-        console.log(props.dragging)
-    }, [props.dragging])
-    
-    
-
     return (
         <React.Fragment>
-            {props.dragging !== null && props.dragging.type === 'tile' &&
+            {props.dragging !== null && props.dragging === 'tile' &&
                 <HoverSection 
                     height={props.tileLength+BORDER_RADIUS_CONSTANT}
                     color='#BE7B7B'
@@ -48,7 +29,7 @@ const DragActions = (props: DragActionsProps) => {
                 </HoverSection>
             }
             <Droppable
-                droppableId="tile-delete"
+                droppableId="tile-delete" // ISSUE004
                 direction="horizontal"
                 type="tile"
                 isDropDisabled={dropDisabled}
