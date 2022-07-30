@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { Tierlist, TileToAdd } from 'data-types'
 import { TierlistCanvasProps } from 'prop-types'
 import React, { useEffect, useState } from 'react'
@@ -8,11 +9,17 @@ import Mutate from '../../helpers/Mutate'
 import Palette from './Palette'
 import TierlistFrame from './Tierlist'
 
-const tileLengthConstant = 150
+const TILE_LENGTH_CONSTANT = 150
+
+const StyledGrid = styled(Grid)`
+    min-width: 300px;
+    margin: 5%; 
+    position: relative;
+`
 
 const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotRef) => {
     const [data, setData] = useState<Tierlist>(loadTierlist())
-    const [tileLength] = useState<number>(tileLengthConstant)
+    const [tileLength] = useState<number>(TILE_LENGTH_CONSTANT)
     const [dragging, setDragging] = useState<string | null>(null)
     const baseTierlistProps = {
         data: data,
@@ -29,7 +36,7 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
     useEffect(() => {
         sessionStorage.setItem('tierlistData', JSON.stringify(data))
         props.updateExports(data, tileLength)
-    }, [data, tileLength])
+    }, [data, tileLength, props])
 
     // Will persist the data changes IF there is a destination for any type of drag
     const handleDragEnd = (result: DropResult) => {
@@ -60,24 +67,16 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
         <DragDropContext
             onDragEnd={handleDragEnd}
             onDragStart={handleDragStart}>
-            <Grid
-                minWidth={300}
-                sx={{ m: 8, position: 'relative' }}
-                alignItems={'center'}
-                justifyContent={'center'} >
-                
+            <StyledGrid>
                 <TierlistFrame 
                     ref={screenshotRef}
                     {...baseTierlistProps} />
-                    
                 <Palette
                     {...baseTierlistProps}
                     addTile={handleAddTile}
                     shuffleTiles={handleShufflePalette}
-                    resetTiles={handleResetToPalette}/>
-
-            </Grid>
-            
+                    resetTiles={handleResetToPalette} />
+            </StyledGrid>
         </DragDropContext>
     )
 })

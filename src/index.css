@@ -25,9 +25,12 @@ code {
 }
 
 .scroll-container {
-    color: transparent;
-    -webkit-text-fill-color: black;
+    -webkit-text-fill-color: white;
     transition: color .5s ease;
-    background-color: transparent;
 }
 
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

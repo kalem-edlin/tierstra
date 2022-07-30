@@ -1,5 +1,6 @@
 import HelpIcon from '@mui/icons-material/Help';
 import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import { Tierlist } from 'data-types';
 import { NavbarButtonProps, NavbarProps } from 'prop-types';
 import React, { useState } from 'react';
 import { exampleGifs, exampleMusicGenres, exampleStarWars } from '../../helpers/Data';
@@ -27,10 +28,15 @@ export default function Navbar(props: NavbarProps) {
     }
 
     // ISSUE005
+    const loadExample = (example: Tierlist) => {
+        props.reloadTierlist(JSON.parse(JSON.stringify(example)))
+        setExamplesMenuAnchorEl(null)
+    }
+
     const examplesMenuItems = [
-        { text: "Star Wars", onClick: () => props.reloadTierlist(JSON.parse(JSON.stringify(exampleStarWars))) },
-        { text: "Classic Gifs", onClick: () => props.reloadTierlist(JSON.parse(JSON.stringify(exampleGifs))) },
-        { text: "Music Genres", onClick: () => props.reloadTierlist(JSON.parse(JSON.stringify(exampleMusicGenres))) },
+        { text: "Star Wars", onClick: () => loadExample(exampleStarWars) },
+        { text: "Music Genres", onClick: () => loadExample(exampleMusicGenres) },
+        { text: "Gifs", onClick: () => loadExample(exampleGifs) },
     ]
     
     const exportMenuItems = [
@@ -54,9 +60,7 @@ export default function Navbar(props: NavbarProps) {
 
                 <Button
                     {...navbarButtonProps}
-                    // aria-controls={open ? 'example_menu_button' : undefined}
                     aria-haspopup="true"
-                    // aria-expanded={open ? 'true' : undefined}
                     onClick={(event) => {setExamplesMenuAnchorEl(event.target as Element)}}>
                     Examples
                 </Button>
@@ -72,9 +76,7 @@ export default function Navbar(props: NavbarProps) {
 
                 <Button
                     {...navbarButtonProps}
-                    // aria-controls={) ? 'example_menu_button' : undefined}
                     aria-haspopup="true"
-                    // aria-expanded={open ? 'true' : undefined}
                     onClick={(event) => setExportMenuAnchorEl(event.target as Element)}>
                     Export
                 </Button>

@@ -1,4 +1,5 @@
 import { Paper } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { PaletteProps } from 'prop-types'
 import React, { useState } from 'react'
 import DragActions from './Actions/DragActions'
@@ -6,32 +7,31 @@ import PaletteActions from './Actions/PaletteActions'
 import List from './List'
 import AddTileModal from './Modals/AddTile'
 
+const StyledPaper = styled(Paper)`
+    border-radius: 5px;
+    background-color: white;
+    overflow: hidden;
+    margin-top: 60px;
+`
 
+const PALETTE_ID = 'palette'
 
 const Palette = (props: PaletteProps) => {
     const [displayAddModal, setDisplayAddModal] = useState(false)
-    const paletteId = "palette"
 
-    const tiles = props.data.tiers[paletteId].tileIds.map(
+    const tiles = props.data.tiers[PALETTE_ID].tileIds.map(
         (tileId: String) => props.data.tiles[tileId]
     )
     
     return (
         <React.Fragment>
-            <Paper 
-                elevation={10}
-                sx={{ 
-                    borderRadius: '5px',
-                    bgColor: 'white',
-                    overflow: 'hidden',
-                    mt: 6,
-                }}>
+            <StyledPaper elevation={10}>
                 <List 
-                    key={paletteId} 
+                    key={PALETTE_ID} 
                     {...props}
-                    listId={paletteId}
+                    listId={PALETTE_ID}
                     tiles={tiles}/>
-            </Paper>
+            </StyledPaper>
 
             {/* The following have conditional displays */}
             <DragActions 
@@ -41,14 +41,12 @@ const Palette = (props: PaletteProps) => {
                     {...props}
                     onAddClick={()=>{setDisplayAddModal(true)}}/>
             }
-            <AddTileModal 
-                //should this AddTileModal be implemented here? Or further towards truth source (canvas?)
+            <AddTileModal                 
                 {...props}
                 open={displayAddModal}
                 onClose={()=>{setDisplayAddModal(false)}}
             />
         </React.Fragment>
-           
     )
 }
 

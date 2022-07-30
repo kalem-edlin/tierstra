@@ -13,6 +13,33 @@ const PreviewDisplayWrapper = styled(Box)`
     height: 150px;
 `
 
+const Wrapper = styled(Grid)`
+    justify-content: center;
+    height: 150px;
+    width: 600px;
+`
+
+const ControlSection = styled(Box)`
+    width: 150px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const StyledCheckbox = styled(Checkbox)`
+    color: gray;
+    &.Mui-checked {
+        color: gray;
+    }
+`
+
+const DoneButton = styled(Button)`
+    margin-top: 24px; 
+    color: white;
+    background-color: gray;
+`
+
 const CropPreview = (props: CropPreviewProps) => {
     const [addMultiple, setAddMultiple] = useState(false)
 
@@ -29,26 +56,23 @@ const CropPreview = (props: CropPreviewProps) => {
     }
 
     return (
-        <Grid
+        <Wrapper
             container
-            direction="row"
-            justifyContent="center"
-            sx={{height: 150, width: 600}}>
-            <Box sx={{width: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <Typography variant="h6" color="ButtonText">Tile:</Typography>
+            direction="row" >
+            <ControlSection>
+                <Typography 
+                    variant="h6" 
+                    color="ButtonText" >
+                    Tile:
+                </Typography>
                 <FormControlLabel 
                     checked={addMultiple}
                     onChange={handleAddMultiple}
                     control={
-                        <Checkbox sx={{
-                            color: 'gray',
-                            '&.Mui-checked': {
-                              color: 'gray',
-                            },
-                        }}/>
+                        <StyledCheckbox />
                     } 
-                    label="Add Multiple"/>
-            </Box>
+                    label="Add Multiple" />
+            </ControlSection>
             <PreviewDisplayWrapper>
                 <Content 
                     content={props.imageLink} 
@@ -56,17 +80,23 @@ const CropPreview = (props: CropPreviewProps) => {
                     crop={props.crop} 
                 />
             </PreviewDisplayWrapper>
-            <Box sx={{width: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <Button onClick={onAddTileClick} variant="contained" color="success" sx={{color: 'white'}}>
+            <ControlSection>
+                <Button 
+                    onClick={onAddTileClick} 
+                    variant="contained" 
+                    color="success" 
+                    sx={{color: 'white'}} >
                     Add Tile
                 </Button>
                 {addMultiple &&
-                    <Button onClick={props.close} variant="contained" sx={{mt: 3, color: 'white'}}>
+                    <DoneButton 
+                        onClick={props.close} 
+                        variant="contained" >
                         Done
-                    </Button>
+                    </DoneButton>
                 }
-            </Box>
-        </Grid>
+            </ControlSection>
+        </Wrapper>
     )
 }
 

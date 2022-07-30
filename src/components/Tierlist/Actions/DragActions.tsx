@@ -1,4 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { DragActionsProps } from 'prop-types';
 import React, { useState } from 'react';
@@ -9,6 +10,13 @@ const DeleteStyledIcon = styled(DeleteIcon)`
     color: white;
     width: 30%;
     height: 30%;
+`
+
+const DropZone = styled(Box)<DragActionsProps>`
+    height: ${props => props.tileLength+BORDER_RADIUS_CONSTANT}px;
+    z-index: -2;
+    position: absolute;
+    width: 100%;
 `
 
 // Component will leave a disabled droppable area to and will not be disabled until mouse hovers the dropsection
@@ -35,19 +43,13 @@ const DragActions = (props: DragActionsProps) => {
                 isDropDisabled={dropDisabled}
             >
                 {(provided) => (
-                    <div 
-                        style={{
-                            height: props.tileLength+BORDER_RADIUS_CONSTANT,
-                            backgroundColor: 'transparent',
-                            zIndex: -2,
-                            position: 'absolute',
-                            width: '100%'
-                        }}
+                    <DropZone 
+                        {...props}
                         ref={provided.innerRef} 
                         {...provided.droppableProps}
                         >
                             {provided.placeholder}
-                    </div>
+                    </DropZone>
                     
                 )}
             </Droppable>

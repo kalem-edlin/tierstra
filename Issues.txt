@@ -13,3 +13,12 @@ Where can I position constants so other files (dragActions) can refer to things 
 
 'ISSUE005':
 Deep copies using JSON serialization is needed as examples hold their state when the same one is reloaded! (issues when deleting)
+
+'ISSUE006':
+removing overflow-x: scroll; will make the scroll bar only show for rows with full content. However this makes rows look uneven. Needs a fix!
+
+'ISSUE007':
+Not reeeally sure whats going on with the 0px width. Kinda forgot. Could be causing complications further down. Not worth fixing until proposed scroll alternative fix
+
+'ISSUE008':
+ The styling (sx, styles etc) logic with the calculations looks better in the return render part than in styled(component)s - alternative styling pattern case (PLZ REVIEW)

@@ -1,48 +1,47 @@
-import styled from '@emotion/styled';
+import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { ListProps } from 'prop-types';
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { useResizeDetector } from 'react-resize-detector';
 import { Tile } from './Tile';
 
-const DropZone = styled.div<any>`
+const DropZone = styled(Box)<{minWidth: number}>`
     min-width: ${(props) => props.minWidth}px;
     height:  100%;
     display: flex;
 `
 
-const ScrollBuffer = styled.div<any>`
+const ScrollBuffer = styled(Box)<ListProps>`
     height: ${(props) => props.tileLength}px;
 `
 
-const ScrollContainer = styled.div<any>`
+// ISSUE006
+const ScrollContainer = styled(Box)`
     overflow-x: scroll;
     overflow-y: hidden;
     display: flex;
-    transition: 1s all ease;
 `
 
-const Wrapper = styled.div<any>`
-    background-color: ${(props) => props.isDraggingOver ? "#E0FFFF" : "#ffffff"};
+const Wrapper = styled(Box)<{isDraggingOver: boolean}>`
+    background-color: ${(props) => props.isDraggingOver ? "#E0FFFF" : "white"};
     display: flex;
     flex-direction: row;
     height: 100%;
-    width: 100%;
-    border: 1px solid transparent;
     transition: 1s all ease;
 `
 
-const ListContainer = styled.div<any>`
-    background-color: #ffffff;
-    width: 100%;
+const ListContainer = styled(Box)<ListProps>`
     height: ${(props) => props.tileLength}px;
+    width: 100%;
 `
 
+// The scroll container layering is intricate here but is required for good functionality
 const List = (props: ListProps) => {
     const { width, ref } = useResizeDetector();
 
     return (
-        <ListContainer tileLength={props.tileLength}>
+        <ListContainer {...props}>
             <Droppable droppableId={props.listId} direction="horizontal" type="tile">
                 {(provided, snapshot) => (
                     <Wrapper 
@@ -50,10 +49,9 @@ const List = (props: ListProps) => {
                         {...provided.droppableProps}
                         ref={ref}>
                         <ScrollContainer className={'scroll-container'}>
-                            <ScrollBuffer tileLength={props.tileLength}>
-                                <DropZone ref={provided.innerRef} minWidth={width}>
+                            <ScrollBuffer {...props}>
+                                <DropZone ref={provided.innerRef} minWidth={width ?? 0}>
                                     {props.tiles.map((tile, index) => {
-                                        console.log(props.listId, "id", tile.id)
                                         return <Tile 
                                             key={tile.id}
                                             {...props} 

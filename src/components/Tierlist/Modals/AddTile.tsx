@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import SearchIcon from '@mui/icons-material/Search';
 import { Backdrop, Box, IconButton, InputBase, Modal, Paper } from "@mui/material";
+import { styled } from '@mui/material/styles';
 import { CropData } from 'data-types';
 import { AddTileModalProps } from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -10,14 +10,14 @@ import CropPreview from './Cropping/CropPreview';
 // example image link for multiple image addition
 // https://i.ibb.co/Wz9FWHY/Music-Genres-500x500-removebg-preview.png
 
-const ModalWrapper = styled.div`
+const ModalWrapper = styled(Box)`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 `
 
-const ModalSection = styled.div`
+const ModalSection = styled(Box)`
     background-color: white;
     width: 600px;
     border: 1px solid black;
@@ -26,6 +26,14 @@ const ModalSection = styled.div`
     color: black;
     overflow: hidden;
     margin-bottom: 3%;
+`
+
+const SearchBar = styled(Paper)`
+    padding: 2px 4px;
+    display: flex;
+    align-items: center; 
+    background-color: white;
+    width: 100%;
 `
 
 const AddTileModal = (props: AddTileModalProps) => {
@@ -77,19 +85,18 @@ const AddTileModal = (props: AddTileModalProps) => {
             <ModalWrapper>
                 <ModalSection>
                     <Box sx={{p: 3}}>
-                        <Paper
-                            sx={{ bgcolor: 'white', p: '2px 4px', display: 'flex', alignItems: 'center', width: 1 }}>
+                        <SearchBar>
                             <InputBase
-                                sx={{ ml: 1, flex: 1, color: 'black' }}
                                 placeholder="Image Link"
                                 inputProps={{ 'aria-label': 'image-link' }}
                                 onChange={(e)=>{setSearchValue(e.target.value)}}
                                 onKeyDown={(e)=>{if (e.key === 'Enter') {handleSubmit()}}}
+                                sx={{ ml: 1, flex: 1, color: 'black' }}
                             />
                             <IconButton onClick={handleSubmit} sx={{ p: '10px', color: 'black' }} aria-label="search">
                                 <SearchIcon />
                             </IconButton>
-                        </Paper>
+                        </SearchBar>
                     </Box>
                     {imageLink !== null &&
                         <Cropper 

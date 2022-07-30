@@ -11,8 +11,8 @@ const getOnDeleteStyle = (style: any, snapshot: any) => {
     return {
         ...style,
         opacity: 0,
-        transform: `scale(0)`,
-        transition: `all 1.5s`,
+        transform: 'scale(0)',
+        transition: 'all 1.5s',
     }
 }
 

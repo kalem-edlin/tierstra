@@ -1,34 +1,32 @@
-import styled from '@emotion/styled'
-import { Paper, Typography } from '@mui/material'
+import { Box, Paper, Typography } from '@mui/material'
+import { styled } from '@mui/material/styles'
 import { TierProps } from 'prop-types'
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import List from './List'
 
-
-const RowListContainer = styled.div`
+// ISSUE007
+const RowListContainer = styled(Box)`
     flex-grow: 1;
     width: 0px;
 `
 
-const TierHandle = styled.div<any>`
+const TierHandle = styled(Paper)<{tileLength: number}>`
+    min-width: ${(props)=>(props.tileLength)}px;
     border: 1px solid grey;
     border-radius: 5px 0px 0px 5px;
-    min-width: ${(props)=>(props.tileLength)}px;
-    min-height: 100%;
-    background-color: #ffffff;
+    background-color: white;
+    color: black;
     &:hover { 
         background-color: #E0FFFF; 
         transition: 1s all ease;
     }
 `
 
-const RowContainer = styled.div`
+const RowContainer = styled(Box)`
     display: flex;
     border: 1px solid lightgrey;
-    background-color: #ffffff;
     border-radius: 5px;
-    width: 100%;
     overflow: hidden;
 `
 
@@ -47,22 +45,12 @@ const Tier = (props: TierProps) => {
                     ref={provided.innerRef} 
                     {...provided.draggableProps}>
                     <TierHandle 
+                        className="centered"
                         tileLength={props.tileLength}
-                        // drag handle props provided to make this box (small part of the row) the drag grab location
-                        {...provided.dragHandleProps}>
-                        <Paper sx={{ 
-                            justifyContent: 'center', 
-                            bgcolor: 'transparent',
-                            color: 'black',
-                            alignItems: 'center', 
-                            display:'flex', 
-                            width: 1, 
-                            height: 1
-                        }}>
-                            <Typography gutterBottom variant="h5" component="div">
-                                {props.tier.title}
-                            </Typography>
-                        </Paper>
+                        {...provided.dragHandleProps} >
+                        <Typography gutterBottom variant="h5">
+                            {props.tier.title}
+                        </Typography>
                     </TierHandle>
                     <RowListContainer>
                         <List
