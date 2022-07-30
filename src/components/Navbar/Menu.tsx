@@ -14,7 +14,6 @@ const NavbarMenu = (props: NavbarMenuProps) => {
 
     return (
         <Menu
-            aria-labelledby="example_menu_button"
             anchorEl={props.anchorEl}
             open={open}
             onClose={props.onClose}
@@ -25,7 +24,7 @@ const NavbarMenu = (props: NavbarMenuProps) => {
                 </MenuItem>
             ))}
         </Menu>
-)
+    )
 }
 
 export default NavbarMenu

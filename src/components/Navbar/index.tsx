@@ -9,8 +9,6 @@ import { handleImport, loadEmptyTierlist } from '../../helpers/Import';
 import NavbarHelp from './Help';
 import NavbarMenu from './Menu';
 
-
-
 export default function Navbar(props: NavbarProps) {
     const [examplesMenuAnchorEl, setExamplesMenuAnchorEl] = useState<Element | null>(null)
     const [exportMenuAnchorEl, setExportMenuAnchorEl] = useState<Element | null>(null)
@@ -34,14 +32,14 @@ export default function Navbar(props: NavbarProps) {
     }
 
     const examplesMenuItems = [
-        { text: "Star Wars", onClick: () => loadExample(exampleStarWars) },
-        { text: "Music Genres", onClick: () => loadExample(exampleMusicGenres) },
-        { text: "Gifs", onClick: () => loadExample(exampleGifs) },
+        { text: 'Star Wars', onClick: () => loadExample(exampleStarWars) },
+        { text: 'Music Genres', onClick: () => loadExample(exampleMusicGenres) },
+        { text: 'Gifs', onClick: () => loadExample(exampleGifs) },
     ]
     
     const exportMenuItems = [
-        { text: "as JSON", onClick: () => exportJSON(props.exports.data) },
-        { text: "as JPEG", onClick: () => exportScreenshot(props.exports) },
+        { text: 'as JSON', onClick: () => exportJSON(props.exports.data) },
+        { text: 'as JPEG', onClick: () => exportScreenshot(props.exports) },
     ]
 
     return (

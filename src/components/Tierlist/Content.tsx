@@ -26,8 +26,9 @@ const Content = (props: ContentProps) => {
         if (props.crop) {
             setScale(getScale(props.tileLength, props.crop))
         }
-    }, [props.crop])
+    }, [props.crop, props.tileLength])
 
+    // ISSUE008
     return (
         <React.Fragment>
             <Wrapper {...props} >

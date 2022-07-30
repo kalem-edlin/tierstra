@@ -30,9 +30,8 @@ export const Tile = (props: TileProps) => {
                     {...provided.dragHandleProps}
                     style={getOnDeleteStyle(provided.draggableProps.style, snapshot)}>
                         <Content 
-                            content={props.tile.content}
-                            tileLength={props.tileLength}
-                            crop={props.tile.crop}
+                            tileLength={props.data}
+                            {...props.tile}
                         />
                 </div>
             )}

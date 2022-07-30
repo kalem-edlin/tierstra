@@ -37,9 +37,10 @@ declare module "prop-types" {
     }
 
     export interface ContentProps {
-        content: string,
-        tileLength: number,
-        crop: CropData,
+        content: string;
+        alt: string;
+        tileLength: number;
+        crop: CropData;
     }
 
 

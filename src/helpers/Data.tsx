@@ -1,14 +1,14 @@
-import { Tierlist } from "data-types"
+import { Tierlist } from 'data-types'
 
 export const empty: Tierlist = {
     tiles: {},
     tiers: {
-        'tier-1': { id: 'tier-1', title: 'A', tileIds: []},
-        'tier-2': { id: 'tier-2', title: 'B', tileIds: [] },
-        'tier-3': { id: 'tier-3', title: 'C', tileIds: [] },
-        'palette': { id: 'palette', title: 'Palette', tileIds: []},
+        "tier-1": { id: "tier-1", title: "A", tileIds: []},
+        "tier-2": { id: "tier-2", title: "B", tileIds: [] },
+        "tier-3": { id: "tier-3", title: "C", tileIds: [] },
+        "palette": { id: "palette", title: "Palette", tileIds: []},
     },
-    tierOrder: ['tier-1', 'tier-2', 'tier-3'],
+    tierOrder: ["tier-1", "tier-2", "tier-3"],
 }
 
 // A preloaded initial data that defines the format of a tierlist object

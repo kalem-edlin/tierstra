@@ -40,7 +40,7 @@ const DoneButton = styled(Button)`
     background-color: gray;
 `
 
-const CropPreview = (props: CropPreviewProps) => {
+const Preview = (props: CropPreviewProps) => {
     const [addMultiple, setAddMultiple] = useState(false)
 
     const onAddTileClick = () => {
@@ -78,6 +78,7 @@ const CropPreview = (props: CropPreviewProps) => {
                     content={props.imageLink} 
                     tileLength={150} 
                     crop={props.crop} 
+                    alt="preview"
                 />
             </PreviewDisplayWrapper>
             <ControlSection>
@@ -85,7 +86,7 @@ const CropPreview = (props: CropPreviewProps) => {
                     onClick={onAddTileClick} 
                     variant="contained" 
                     color="success" 
-                    sx={{color: 'white'}} >
+                    sx={{color: "white"}} >
                     Add Tile
                 </Button>
                 {addMultiple &&
@@ -100,4 +101,4 @@ const CropPreview = (props: CropPreviewProps) => {
     )
 }
 
-export default CropPreview
+export default Preview

@@ -5,7 +5,7 @@ import { CropData } from 'data-types';
 import { AddTileModalProps } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Cropper from './Cropping/Cropper';
-import CropPreview from './Cropping/CropPreview';
+import Preview from './Cropping/Preview';
 
 // example image link for multiple image addition
 // https://i.ibb.co/Wz9FWHY/Music-Genres-500x500-removebg-preview.png
@@ -106,7 +106,7 @@ const AddTileModal = (props: AddTileModalProps) => {
                 </ModalSection>
                 {crop &&
                     <ModalSection>
-                        <CropPreview 
+                        <Preview 
                             crop={crop}
                             imageLink={imageLink!}
                             close={handleClose} 
