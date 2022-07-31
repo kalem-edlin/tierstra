@@ -1,8 +1,10 @@
+import Config from "config-types";
 import { Exports, ReloadTierlist } from "data-types";
 
 declare module "prop-types" {
     
     export interface TierlistCanvasProps {
+        appConfig: Config
         payload: Tierlist | null;
         updateExports: (data: Tierlist, tileLength: number) => void;
     }
@@ -11,6 +13,7 @@ declare module "prop-types" {
         data: Tierlist;
         tileLength: number;
         dragging: string | null;
+        appConfig: Config
     }
 
     export interface PaletteProps extends BaseTierlistProps {

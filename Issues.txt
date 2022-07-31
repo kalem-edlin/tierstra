@@ -29,3 +29,6 @@ I had to use a callback function that would not recalculate itself in the canvas
 This begs the question: Is there anyway to make sure Tierlist Data or  tileLength is only if it has changed? Will this save performance
 Callbacks are also generally used to increase performance. Where else can I use these? Im sure alot of updating is happening when dragging something. Performance gains?
 TLDR: why would I NOT use a callback in place of my functions dealing with states
+
+'ISSUE010':
+The network logic for the appconfig fetching should be moved into a networking layer when a backend is introduced
