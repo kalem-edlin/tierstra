@@ -1,7 +1,5 @@
 {
-    "items": {
-        "cropTypeConfig": 0,
-        "addTilePositionConfig": 0
-    }
+    "cropType": 0,
+    "addTilePosition": 1
 }
  
