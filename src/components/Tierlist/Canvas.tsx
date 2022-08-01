@@ -26,7 +26,7 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
         data: data,
         tileLength: tileLength,
         dragging: dragging,
-        appConfig: props.appConfig
+        // appConfig: props.appConfig
     }
 
     // When a payload is sent from parent component, apply it to data if it is not null
