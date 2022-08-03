@@ -29,6 +29,24 @@ I had to use a callback function that would not recalculate itself in the canvas
 This begs the question: Is there anyway to make sure Tierlist Data or  tileLength is only if it has changed? Will this save performance
 Callbacks are also generally used to increase performance. Where else can I use these? Im sure alot of updating is happening when dragging something. Performance gains?
 TLDR: why would I NOT use a callback in place of my functions dealing with states
+- Use it when children are re-rendering themselves too much because of functions re-calculating themselves (long lists of prop functions)
 
 'ISSUE010':
 The network logic for the appconfig fetching should be moved into a networking layer when a backend is introduced
+
+'ISSUE011':
+This whole Config class could have just as easily been implemented with functional programming to keep up with the patterns of the app itself. 
+However, the goal of the AppConfig is to make it as easy as possible for developers to add config items to the project and not worry too much about 
+how the debug drawer, or contexts would work in the background. An OOP method of design seemed to best accomodate this using an extension of Config
+to hide its inner workings and leave the devs with a simple interface to add config items + 
+prevents a ton of imports into the app (EG all the functions used in config)
+I tried to make items in the Config class immutable to align better with Functional programming rules that the class must adhere to within the app 
+returning a new App Config with a deep copy of items each time they must be changed for the app's Set State pattern.
+
+'ISSUE012':
+https://www.petermorlion.com/iterating-a-typescript-enum/ 
+I can implement this in a potentially smarter way. Type script Enums can be enumerated to get their case string representatino which could replace string options.
+I could also look into using properties as config items instead of a Record by converting the properties to JSON and mapping values and then converting back to app Config with typescripts record conversion
+
+'ISSUE013':
+This is done in the Config class but with a key. Should I implement a ConfigItem class that implements its own getValue => value ?? default (can use this in Config get())

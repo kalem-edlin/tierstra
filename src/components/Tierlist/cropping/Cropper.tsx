@@ -40,6 +40,7 @@ const ZoomCropper = (props: CropperProps) => {
                     onCropAreaChange={(crop, croppedAreaPixels) => { // ISSUE001
                         props.setCrop(croppedAreaPixels)
                     }}
+                    // Perhaps I can just do a ? conditional rendering of this cropper component and the other. Maybe they will share the same props!
                 />
             </Wrapper>
         </div>

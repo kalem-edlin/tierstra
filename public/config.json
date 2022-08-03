@@ -1,5 +1,5 @@
 {
-    "cropType": 0,
-    "addTilePosition": 1
+    "cropperType": "select",
+    "addTileButtonInPalette": true
 }
  

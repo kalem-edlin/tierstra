@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { styled } from '@mui/material/styles'
 import { CropPreviewProps } from 'prop-types'
 import React, { useState } from 'react'
-import Content from '../../Content'
+import Content from '../Content'
 
 const PreviewDisplayWrapper = styled(Box)`
     border-left: 1px solid black;

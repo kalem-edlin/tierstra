@@ -4,8 +4,8 @@ import { styled } from '@mui/material/styles';
 import { CropData } from 'data-types';
 import { AddTileModalProps } from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import Cropper from './Cropping/Cropper';
-import Preview from './Cropping/Preview';
+import Cropper from '../cropping/Cropper';
+import Preview from '../cropping/Preview';
 
 // example image link for multiple image addition
 // https://i.ibb.co/Wz9FWHY/Music-Genres-500x500-removebg-preview.png
@@ -75,8 +75,6 @@ const AddTileModal = (props: AddTileModalProps) => {
         <Modal
             open={props.open}
             onClose={handleClose}
-            aria-labelledby={"add-tile-modal"}
-            aria-describedby={"add-tile-modal-description"}
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{

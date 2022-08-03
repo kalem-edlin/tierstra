@@ -2,10 +2,10 @@ import { Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { PaletteProps } from 'prop-types'
 import React, { useState } from 'react'
-import DragActions from './Actions/DragActions'
-import PaletteActions from './Actions/PaletteActions'
+import DragActions from './actions/DragActions'
+import PaletteActions from './actions/PaletteActions'
 import List from './List'
-import AddTileModal from './Modals/AddTile'
+import AddTileModal from './modals/AddTile'
 
 const StyledPaper = styled(Paper)`
     border-radius: 5px;
@@ -30,7 +30,9 @@ const Palette = (props: PaletteProps) => {
                     key={PALETTE_ID} 
                     {...props}
                     listId={PALETTE_ID}
-                    tiles={tiles}/>
+                    tiles={tiles}
+                    // pass SHOULD display tile add button at end if config value true
+                    />
             </StyledPaper>
 
             {/* The following have conditional displays */}

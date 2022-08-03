@@ -1,9 +1,7 @@
 import { Exports, ReloadTierlist } from "data-types";
-
 declare module "prop-types" {
     
     export interface TierlistCanvasProps {
-        appConfig: Config;
         payload: Tierlist | null;
         updateExports: (data: Tierlist, tileLength: number) => void;
     }
@@ -12,7 +10,6 @@ declare module "prop-types" {
         data: Tierlist;
         tileLength: number;
         dragging: string | null;
-        appConfig: Config
     }
 
     export interface PaletteProps extends BaseTierlistProps {
@@ -68,6 +65,8 @@ declare module "prop-types" {
     }
 
     export interface AddTileModalProps extends PaletteProps, ModalProps {}
+
+    export interface DebugDrawerProps extends ModalProps {}
 
 
     // Cropping

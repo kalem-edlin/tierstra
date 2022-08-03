@@ -17,8 +17,6 @@ const getOnDeleteStyle = (style: any, snapshot: any) => {
 }
 
 export const Tile = (props: TileProps) => {
-    console.log(props.tile.alt)
-
     return (
         <Draggable
             draggableId={props.tile.id}

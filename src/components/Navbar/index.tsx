@@ -59,7 +59,7 @@ export default function Navbar(props: NavbarProps) {
                 <Button
                     {...navbarButtonProps}
                     aria-haspopup="true"
-                    onClick={(event) => {setExamplesMenuAnchorEl(event.target as Element)}}>
+                    onClick={(event) => setExamplesMenuAnchorEl(event.target as Element)}>
                     Examples
                 </Button>
 

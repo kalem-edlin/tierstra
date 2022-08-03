@@ -1,8 +1,5 @@
 
 declare module "data-types" {
-    export interface Dictionary<T> {
-        [key: string]: T;
-    }
 
     export interface CropData {
         width?: number|undefined;
@@ -25,8 +22,8 @@ declare module "data-types" {
     }
 
     export interface Tierlist {
-        tiles: Dictionary<Tile>;
-        tiers: Dictionary<Tier>;
+        tiles: Record<string, Tile>;
+        tiers: Record<string, Tier>;
         tierOrder: string[];
     }
 
