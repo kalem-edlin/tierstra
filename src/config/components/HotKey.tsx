@@ -6,7 +6,7 @@ const useConfigHotKey = (open: boolean, setOpen: (x: boolean) => void) => {
         if ( e.ctrlKey && e.key === "d" ) {
             setOpen(!open)
         }
-    }, [open])
+    }, [open, setOpen])
 
     useEffect(() => {
         document.addEventListener('keydown', onKeyDown);

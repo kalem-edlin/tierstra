@@ -39,7 +39,7 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
     useEffect(() => {
         sessionStorage.setItem('tierlistData', JSON.stringify(data))
         setExports(data, tileLength)
-    }, [data, setExports])
+    }, [data, setExports, tileLength])
 
     // Will persist the data changes IF there is a destination for any type of drag
     const handleDragEnd = (result: DropResult) => {
