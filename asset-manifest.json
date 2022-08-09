@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/tierstra/static/css/main.34e8ef6c.css",
-    "main.js": "/tierstra/static/js/main.67d45dbc.js",
+    "main.css": "/tierstra/static/css/main.9975d7db.css",
+    "main.js": "/tierstra/static/js/main.27cb65d2.js",
     "index.html": "/tierstra/index.html",
-    "main.34e8ef6c.css.map": "/tierstra/static/css/main.34e8ef6c.css.map",
-    "main.67d45dbc.js.map": "/tierstra/static/js/main.67d45dbc.js.map"
+    "main.9975d7db.css.map": "/tierstra/static/css/main.9975d7db.css.map",
+    "main.27cb65d2.js.map": "/tierstra/static/js/main.27cb65d2.js.map"
   },
   "entrypoints": [
-    "static/css/main.34e8ef6c.css",
-    "static/js/main.67d45dbc.js"
+    "static/css/main.9975d7db.css",
+    "static/js/main.27cb65d2.js"
   ]
 }
