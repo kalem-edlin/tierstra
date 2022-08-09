@@ -19,19 +19,6 @@ class Config {
         return Object.entries(this.items)
     }
 
-    // ISSUE010
-    // Returns an updated Config Promise given a JSON response applying updates to current App Config state.
-    public updated = async (): Promise<Config> => {
-        const response = await fetch('config.json', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        const result: Record<string, any> = await response.json()
-        return this.apply(result)
-    }
-
     // ISSUE011
     // This function will apply the input object properties if they exist in ITEMS to the app config
     public apply = (input: Record<string, any>): Config => {

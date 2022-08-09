@@ -1,9 +1,9 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Backdrop, Box, IconButton, InputBase, Modal, Paper } from "@mui/material";
+import { Alert, Backdrop, Box, IconButton, InputBase, Modal, Paper, Snackbar } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { CropData } from 'data-types';
 import { AddTileModalProps } from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Cropper from '../cropping/Cropper';
 import Preview from '../cropping/Preview';
 
@@ -36,20 +36,33 @@ const SearchBar = styled(Paper)`
     width: 100%;
 `
 
+const isImageUrl = (url: string) => {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)/.test(url)
+}
+
 const AddTileModal = (props: AddTileModalProps) => {
     const [imageLink, setImageLink] = useState<string | null>(null)
     const [searchValue, setSearchValue] = useState<string>('')
     const [crop, setCrop] = useState<CropData | null>(null)
+    const [searchWarning, setSearchWarning] = useState<string | null>(null)
 
     const handleSubmit = () => {
-        console.log(searchValue)
-        setImageLink(searchValue)
+        if ( searchValue === '' ){
+            setSearchWarning('Please enter an image URL')
+        }
+        else if ( !isImageUrl(searchValue) ) {
+            setSearchWarning('Not a valid image URL')
+        }
+        else {
+            setImageLink(searchValue)
+        }
     }
 
     const handleClose = () => {
         setSearchValue('')
         setImageLink(null)
         setCrop(null)
+        setSearchWarning(null)
         props.onClose()
     }
     
@@ -64,12 +77,13 @@ const AddTileModal = (props: AddTileModalProps) => {
         }
     }
 
-    // This may be overkill but will hide the cropper when searchValue is nothing
-    useEffect(() => {
-        if (searchValue === '') {
+    // This may be overkill but will hide the cropper when searchValue is nothing or when search changed and imageLink previously set
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.target.value)
+        if (searchValue === '' || Boolean(imageLink)) {
             setImageLink(null)
         }
-    }, [searchValue])
+    }
 
     return (
         <Modal
@@ -77,40 +91,56 @@ const AddTileModal = (props: AddTileModalProps) => {
             onClose={handleClose}
             closeAfterTransition
             BackdropComponent={Backdrop}
+            sx={{zIndex: 10}} // ISSUE017
             BackdropProps={{
                 timeout: 500,
             }}
-            style ={{zIndex: 3}} >
-            <ModalWrapper>
-                <ModalSection>
-                    <Box sx={{p: 3}}>
-                        <SearchBar>
-                            <InputBase
-                                placeholder="Image Link"
-                                inputProps={{ 'aria-label': 'image-link' }}
-                                onChange={(e)=>{setSearchValue(e.target.value)}}
-                                onKeyDown={(e)=>{if (e.key === 'Enter') {handleSubmit()}}}
-                                sx={{ ml: 1, flex: 1, color: 'black' }}
-                            />
-                            <IconButton onClick={handleSubmit} sx={{ p: '10px', color: 'black' }} aria-label="search">
-                                <SearchIcon />
-                            </IconButton>
-                        </SearchBar>
-                    </Box>
-                    {imageLink !== null &&
-                        <Cropper imageLink={imageLink} setCrop={setCrop}/>
-                    }
-                </ModalSection>
-                {crop &&
+        >
+            <React.Fragment>
+                <ModalWrapper>
                     <ModalSection>
-                        <Preview 
-                            crop={crop}
-                            imageLink={imageLink!}
-                            close={handleClose} 
-                            onAddTileClick={handleAddTile} />
+                        <Box sx={{p: 3}}>
+                            <SearchBar>
+                                <InputBase
+                                    placeholder="Image Link"
+                                    inputProps={{ 'aria-label': 'image-link' }}
+                                    onChange={handleSearchChange}
+                                    onKeyDown={(e)=>{if (e.key === 'Enter') {handleSubmit()}}}
+                                    sx={{ ml: 1, flex: 1, color: 'black' }} />
+                                <IconButton onClick={handleSubmit} sx={{ p: '10px', color: 'black' }} aria-label="search">
+                                    <SearchIcon />
+                                </IconButton>
+                            </SearchBar>
+                        </Box>
+                        {imageLink !== null &&
+                            <Cropper imageLink={imageLink} setCrop={setCrop} />
+                        }
                     </ModalSection>
-                }
-            </ModalWrapper>
+                    {crop &&
+                        <ModalSection>
+                            <Preview 
+                                crop={crop}
+                                imageLink={imageLink!}
+                                close={handleClose} 
+                                onAddTileClick={handleAddTile} />
+                        </ModalSection>
+                    }
+                </ModalWrapper>
+                <Snackbar
+                        open={Boolean(searchWarning)}
+                        autoHideDuration={4000}
+                        onClose={() => setSearchWarning(null)}
+                        sx={{position: 'absolute', left: 0, bottom: 0}}
+                >
+                    <Alert 
+                        onClose={() => setSearchWarning(null)} 
+                        severity="error" 
+                        sx={{ width: '100%' }}
+                    >
+                        {searchWarning}
+                    </Alert>
+                </Snackbar>
+            </React.Fragment>
         </Modal>
     )
 }

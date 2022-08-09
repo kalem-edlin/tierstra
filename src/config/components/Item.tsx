@@ -29,7 +29,7 @@ const AbstractItem = ({configKey, item, updateAppConfig}: AbstractItemType) => {
                     <ListItem disablePadding key={index}>
                         <ListItemButton onClick={() => updateAppConfig(configKey, option)}>
                             <ListItemText primary={option} />
-                            <ListItemIcon sx={{color: '#138FE0'}} >
+                            <ListItemIcon sx={{color: '#138FE0'}}>
                                 {option===value && <DoneIcon />}
                             </ListItemIcon>
                         </ListItemButton>

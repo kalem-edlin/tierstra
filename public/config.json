@@ -1,5 +1,4 @@
 {
-    "cropperType": "select",
-    "actionsAreStatic": false
+    "cropperType": "panZoom"
 }
  

@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import AppConfig from '../AppConfig'
+import AppConfig, { getRemoteConfig } from '../AppConfig'
 import DebugDrawer from '../components/Drawer'
 import Context, { useAppConfig } from './Context'
 
@@ -10,13 +10,13 @@ const Provider = ({ children }: ProviderProps) => {
 
     // The onload lifecycle method here will load an updated version of the app config into the application.
     useEffect(() => {
-        appConfig.updated().then( (config: AppConfig) => { setAppConfig(config) })
+        getRemoteConfig().then( (config: AppConfig) => { setAppConfig(config) })
     }, [])
 
     return (
-        <Context.Provider value={appConfig} >
+        <Context.Provider value={appConfig}>
             {children}
-            <DebugDrawer setAppConfig={setAppConfig}/>
+            <DebugDrawer setAppConfig={setAppConfig} />
         </Context.Provider>
     )
 }

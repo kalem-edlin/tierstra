@@ -2,6 +2,7 @@ import { CropperProps } from 'prop-types';
 import React, { useState } from 'react';
 import Cropper from "react-easy-crop";
 
+// a far more simple implementation of a cropper for this usecase (compared to select cropper)
 const PanZoomCropper = (props: CropperProps) => {
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1)

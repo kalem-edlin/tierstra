@@ -17,6 +17,7 @@ const NavbarMenu = (props: NavbarMenuProps) => {
             anchorEl={props.anchorEl}
             open={open}
             onClose={props.onClose}
+            sx={{zIndex: 10}} // ISSUE017
         >
             {props.items.map(({onClick, text}) => (
                 <MenuItem key={text} onClick={onClick}>

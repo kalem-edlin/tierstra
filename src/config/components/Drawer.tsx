@@ -20,9 +20,7 @@ const DebugDrawer = (props: {setAppConfig: (config: AppConfig) => void}) => {
     }
 
     const resetAppConfig = () => {
-        var newConfig = new AppConfig
-        console.log(newConfig)
-        props.setAppConfig(newConfig)
+        props.setAppConfig(new AppConfig())
     }
 
     useConfigHotKey(open, setOpen);
@@ -34,6 +32,7 @@ const DebugDrawer = (props: {setAppConfig: (config: AppConfig) => void}) => {
             open={open}
             onClose={() => setOpen(false)}
             elevation={16}
+            sx={{zIndex: 100}}
         >
             <Wrapper>
                 <List>
@@ -43,11 +42,12 @@ const DebugDrawer = (props: {setAppConfig: (config: AppConfig) => void}) => {
                     <ListItem disablePadding>
                         <ListItemButton 
                             sx={{color: '#138FE0'}} 
-                            onClick={resetAppConfig} >
+                            onClick={resetAppConfig} 
+                        >
                             Reset to Defaults
                         </ListItemButton>
                     </ListItem>
-                    <Divider sx={{mt: 1, mb: 1}}/>
+                    <Divider sx={{mt: 1, mb: 1}} />
                     {appConfig.entries.map(([configKey, configItem]) => (
                         <AbstractItem 
                             key={configKey} 

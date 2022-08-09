@@ -39,15 +39,18 @@ const Tier = (props: TierProps) => {
     return (
         <Draggable
             draggableId={tierId}
-            index={props.index} >
+            index={props.index}
+        >
             {(provided) => (
                 <RowContainer 
                     ref={provided.innerRef} 
-                    {...provided.draggableProps}>
+                    {...provided.draggableProps}
+                >
                     <TierHandle 
                         className="centered"
                         {...props}
-                        {...provided.dragHandleProps} >
+                        {...provided.dragHandleProps}
+                    >
                         <Typography gutterBottom variant="h5">
                             {props.tier.title}
                         </Typography>

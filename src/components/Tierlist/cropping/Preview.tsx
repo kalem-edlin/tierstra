@@ -53,11 +53,13 @@ const Preview = (props: CropPreviewProps) => {
     return (
         <Wrapper
             container
-            direction="row" >
+            direction="row" 
+        >
             <ControlSection>
                 <Typography 
                     variant="h6" 
-                    color="ButtonText" >
+                    color="ButtonText" 
+                >
                     Tile:
                 </Typography>
                 <FormControlLabel 
@@ -73,21 +75,22 @@ const Preview = (props: CropPreviewProps) => {
                     content={props.imageLink} 
                     tileLength={150} 
                     crop={props.crop} 
-                    alt="preview"
-                />
+                    alt="preview" />
             </PreviewDisplayWrapper>
             <ControlSection>
                 <Button 
                     onClick={onAddTileClick} 
                     variant="contained" 
                     color="success" 
-                    sx={{color: 'white'}} >
+                    sx={{color: 'white'}} 
+                >
                     Add Tile
                 </Button>
                 {addMultiple &&
                     <DoneButton 
                         onClick={props.close} 
-                        variant="contained" >
+                        variant="contained" 
+                    >
                         Done
                     </DoneButton>
                 }

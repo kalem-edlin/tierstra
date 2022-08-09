@@ -9,9 +9,8 @@ const APP_CONFIG_ITEMS = {
 
     // Decides which cropping mechanism to use
     'cropperType': { default: 'panZoom', options: ['panZoom', 'select'] },
-    
-    // Puts an Add Tile Button in the palette at the end of the tiles (shaped as a tile)
-    'addTileButtonInPalette': { default: false }
+
+
 }
 
 
@@ -19,6 +18,21 @@ class AppConfig extends Config {
     constructor() {
         super(APP_CONFIG_ITEMS)
     }
+}
+
+// ISSUE010
+// Returns an updated Config Promise given a JSON response applying updates to current App Config state.
+export const getRemoteConfig = async (): Promise<AppConfig> => {
+    const response = await fetch('config.json', {
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    const result: Record<string, any> = await response.json()
+    const appConfig = new AppConfig()
+    appConfig.apply(result)
+    return appConfig
 }
 
 export default AppConfig

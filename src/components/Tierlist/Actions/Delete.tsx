@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { DragActionsProps } from 'prop-types';
+import { DeleteActionProps } from 'prop-types';
 import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { BORDER_RADIUS_CONSTANT, HoverSection } from './Shared';
@@ -20,7 +20,7 @@ const DropZone = styled(Box)<{tileLength: number}>`
 `
 
 // Component will leave a disabled droppable area to and will not be disabled until mouse hovers the dropsection
-const DragActions = (props: DragActionsProps) => {
+const DeleteAction = (props: DeleteActionProps) => {
     const [dropDisabled, setDropDisabled] = useState(true)
 
     return (
@@ -32,7 +32,7 @@ const DragActions = (props: DragActionsProps) => {
                     center={true}
                     onMouseEnter={() => setDropDisabled(false)}
                     onMouseLeave={() => setDropDisabled(true)}
-                    >
+                >
                     <DeleteStyledIcon />
                 </HoverSection>
             }
@@ -47,7 +47,7 @@ const DragActions = (props: DragActionsProps) => {
                         {...props}
                         ref={provided.innerRef} 
                         {...provided.droppableProps}
-                        >
+                    >
                             {provided.placeholder}
                     </DropZone>
                     
@@ -57,4 +57,4 @@ const DragActions = (props: DragActionsProps) => {
     )
 }
 
-export default DragActions
+export default DeleteAction

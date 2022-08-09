@@ -27,9 +27,11 @@ export const NavbarHelp = (props: ModalProps) => {
                 aria-describedby="help-modal-description"
                 closeAfterTransition
                 BackdropComponent={Backdrop}
+                sx={{zIndex: 10}} // ISSUE017
                 BackdropProps={{
                     timeout: 500,
-                }}>
+                }}
+            >
                 <Wrapper>
                     <Typography
                         variant="h5"
@@ -46,11 +48,15 @@ export const NavbarHelp = (props: ModalProps) => {
                     <Typography sx={{mt: 2}}>
                         Regardless of the row's capacity, an image export will bring everything into view in a JPEG image. JSON exports are importable for preliminary file sharing. Resetting (or first time loading) will provide a basic default dataset to try the tierlist out. Adding and removing content will come in a future version.
                     </Typography>
+                    <Typography sx={{mt: 2}}>
+                        Use shortcut CTRL+D to access the new debug drawer!
+                    </Typography>
                     <Button
                         sx={{mt: 4}}
                         color="inherit"
                         variant="outlined"
-                        onClick={props.onClose}>
+                        onClick={props.onClose}
+                    >
                         Close
                     </Button>
                 </Wrapper>

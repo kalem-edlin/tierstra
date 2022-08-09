@@ -34,6 +34,8 @@ TLDR: why would I NOT use a callback in place of my functions dealing with state
 
 'ISSUE010':
 The network logic for the appconfig fetching should be moved into a networking layer when a backend is introduced
+This also introduces an important problem. Should this update function live inside the AppConfig class if I am using OOP
+If so, the useEffect hook to load in data will not work as appConfig will change its OOP state, not its state in the react component (conflict)
 
 'ISSUE011':
 This whole Config class could have just as easily been implemented with functional programming to keep up with the patterns of the app itself. 
@@ -63,3 +65,7 @@ Perhaps there is a way to detach the instance of APP_CONFIG_ITEMS so it is not m
 'ISSUE016': 
 I cant figure out how to position the debug drawer above things like modals. THere must be some sort of overriding positioning in 
 the MUI components. This needs to be fixed so the features like cropperType can be switched while in the cropper modal.
+
+'ISSUE017':
+All Modals currently need to have the same z-index to allow debug drawer to overlay them. Surely when moving all modals into a 
+tierstra specific modal abstraction, retain this z-index so as not to set it everywhere.

@@ -34,9 +34,9 @@ const Cropper = (props: BaseCropProps) => {
     const renderSwitch = (param: string) => {
         switch(param) {
             case "select":
-                return <SelectCropper {...props} setHeight={setHeight} {...constants}  />
+                return <SelectCropper {...props} setHeight={setHeight} {...constants} />
             default:
-                return <PanZoomCropper {...props} {...constants}  />
+                return <PanZoomCropper {...props} {...constants} />
         }
     }
 

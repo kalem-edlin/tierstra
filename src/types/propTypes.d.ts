@@ -49,7 +49,7 @@ declare module "prop-types" {
         onAddClick: () => void;
     }
 
-    export interface DragActionsProps extends BaseTierlistProps {}
+    export interface DeleteActionProps extends BaseTierlistProps {}
 
 
     // Modals

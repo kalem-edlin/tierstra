@@ -42,12 +42,17 @@ const List = (props: ListProps) => {
 
     return (
         <ListContainer {...props}>
-            <Droppable droppableId={props.listId} direction="horizontal" type="tile">
+            <Droppable 
+                droppableId={props.listId}
+                direction="horizontal" 
+                type="tile"
+            >
                 {(provided, snapshot) => (
                     <Wrapper 
                         isDraggingOver={snapshot.isDraggingOver} 
                         {...provided.droppableProps}
-                        ref={ref}>
+                        ref={ref}
+                    >
                         <ScrollContainer className="scroll-container">
                             <ScrollBuffer {...props}>
                                 <DropZone ref={provided.innerRef} minWidth={width ?? 0}>
@@ -56,8 +61,7 @@ const List = (props: ListProps) => {
                                             key={tile.id}
                                             {...props} 
                                             tile={tile} 
-                                            index={index} 
-                                        />
+                                            index={index} />
                                     })}
                                     {provided.placeholder}
                                 </DropZone>
