@@ -3,9 +3,9 @@ import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import { Tierlist } from 'data-types';
 import { NavbarButtonProps, NavbarProps } from 'prop-types';
 import React, { useState } from 'react';
-import { exampleGifs, exampleMusicGenres, exampleStarWars } from '../../helpers/Data';
-import { exportJSON, exportScreenshot } from '../../helpers/Export';
-import { handleImport, loadEmptyTierlist } from '../../helpers/Import';
+import { exampleGifs, exampleMusicGenres, exampleStarWars } from '../../utils/Data';
+import { exportJSON, exportScreenshot } from '../../utils/Export';
+import { handleImport, loadEmptyTierlist } from '../../utils/Import';
 import NavbarHelp from './Help';
 import NavbarMenu from './Menu';
 

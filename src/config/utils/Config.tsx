@@ -51,7 +51,7 @@ class Config {
     }
 
     constructor(defaults: ConfigItems) {
-        this.items = defaults
+        this.items = JSON.parse(JSON.stringify(defaults)) //ISSUE015
     }
 }
 

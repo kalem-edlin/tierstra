@@ -42,7 +42,7 @@ const PaletteActions = (props: PaletteActionsProps) => {
 
     return (
         <React.Fragment>
-            <HoverSection height={wrapperHeight} color="gray" center={false}>
+            <HoverSection id={'hover'} height={wrapperHeight} color="gray" center={false}>
                 <ActionButton 
                     height={wrapperHeight}
                     icon={<AddIcon/>}

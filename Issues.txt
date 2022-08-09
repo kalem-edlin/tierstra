@@ -1,5 +1,6 @@
 'ISSUE001':
 Need to know how to remove the first unused parameter from a function
+### solved by using '_' and keeping outside of a typescript context so as to not need to assign it a type ###
 
 'ISSUE002':
 Perhaps an Error handling framework should be created for issues (alert or console error?)
@@ -50,3 +51,15 @@ I could also look into using properties as config items instead of a Record by c
 
 'ISSUE013':
 This is done in the Config class but with a key. Should I implement a ConfigItem class that implements its own getValue => value ?? default (can use this in Config get())
+
+'ISSUE014':
+Should there be a context provider here that propogates the TierlistBaseProps data to all components WHEN it is needed on them rather then passing them through 
+many levels of props? How will I handle updating the context? Just like I have a setAppConfig property in the config context?
+
+'ISSUE015':
+JSON stringify parse deepcopy method is needed to deepcopy nested objects (as APP_CONFIG_ITEMS requires)
+Perhaps there is a way to detach the instance of APP_CONFIG_ITEMS so it is not mutated on a construction of AppConfig object
+
+'ISSUE016': 
+I cant figure out how to position the debug drawer above things like modals. THere must be some sort of overriding positioning in 
+the MUI components. This needs to be fixed so the features like cropperType can be switched while in the cropper modal.

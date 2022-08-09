@@ -12,7 +12,7 @@ const DeleteStyledIcon = styled(DeleteIcon)`
     height: 30%;
 `
 
-const DropZone = styled(Box)<DragActionsProps>`
+const DropZone = styled(Box)<{tileLength: number}>`
     height: ${props => props.tileLength+BORDER_RADIUS_CONSTANT}px;
     z-index: -2;
     position: absolute;

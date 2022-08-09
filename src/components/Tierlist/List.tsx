@@ -12,7 +12,7 @@ const DropZone = styled(Box)<{minWidth: number}>`
     display: flex;
 `
 
-const ScrollBuffer = styled(Box)<ListProps>`
+const ScrollBuffer = styled(Box)<{tileLength: number}>`
     height: ${props => props.tileLength}px;
 `
 
@@ -31,7 +31,7 @@ const Wrapper = styled(Box)<{isDraggingOver: boolean}>`
     transition: 1s all ease;
 `
 
-const ListContainer = styled(Box)<ListProps>`
+const ListContainer = styled(Box)<{tileLength: number}>`
     height: ${props => props.tileLength}px;
     width: 100%;
 `

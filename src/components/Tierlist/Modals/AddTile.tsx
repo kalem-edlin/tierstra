@@ -52,7 +52,7 @@ const AddTileModal = (props: AddTileModalProps) => {
         setCrop(null)
         props.onClose()
     }
-
+    
     const handleAddTile = () => {
         if ( imageLink !== null ) {
             props.addTile({
@@ -79,7 +79,8 @@ const AddTileModal = (props: AddTileModalProps) => {
             BackdropComponent={Backdrop}
             BackdropProps={{
                 timeout: 500,
-            }}>
+            }}
+            style ={{zIndex: 3}} >
             <ModalWrapper>
                 <ModalSection>
                     <Box sx={{p: 3}}>
@@ -97,9 +98,7 @@ const AddTileModal = (props: AddTileModalProps) => {
                         </SearchBar>
                     </Box>
                     {imageLink !== null &&
-                        <Cropper 
-                            imageLink={imageLink} 
-                            setCrop={setCrop} />
+                        <Cropper imageLink={imageLink} setCrop={setCrop}/>
                     }
                 </ModalSection>
                 {crop &&

@@ -3,13 +3,13 @@ declare module "prop-types" {
     
     export interface TierlistCanvasProps {
         payload: Tierlist | null;
-        updateExports: (data: Tierlist, tileLength: number) => void;
+        setExports: (data: Tierlist, tileLength: number) => void;
     }
 
     interface BaseTierlistProps {
         data: Tierlist;
-        tileLength: number;
         dragging: string | null;
+        tileLength: number;
     }
 
     export interface PaletteProps extends BaseTierlistProps {
@@ -73,16 +73,19 @@ declare module "prop-types" {
 
     interface BaseCropProps {
         imageLink: string;
+        setCrop: (crop: CropData | null) => void;
     }
 
-    export interface CropPreviewProps extends BaseCropProps {
+    export interface CropPreviewProps {
+        imageLink: string;
         onAddTileClick: () => void;
         close: () => void;
         crop: CropData;
     }
 
     export interface CropperProps extends BaseCropProps {
-        setCrop: (crop: CropData | null) => void
+        cropAreaAspect: number;
+        cropAreaLength: number;
     }
 
 

@@ -11,7 +11,7 @@ const RowListContainer = styled(Box)`
     width: 0px;
 `
 
-const TierHandle = styled(Box)<TierProps>`
+const TierHandle = styled(Box)<{tileLength: number}>`
     min-width: ${props => props.tileLength}px;
     border: 1px solid grey;
     border-radius: 5px 0px 0px 5px;

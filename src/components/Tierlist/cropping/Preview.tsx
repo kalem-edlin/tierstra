@@ -50,11 +50,6 @@ const Preview = (props: CropPreviewProps) => {
         }
     }
 
-    // ISSUE001
-    const handleAddMultiple = (_:any, checked: boolean) => { 
-        setAddMultiple(checked)
-    }
-
     return (
         <Wrapper
             container
@@ -67,7 +62,7 @@ const Preview = (props: CropPreviewProps) => {
                 </Typography>
                 <FormControlLabel 
                     checked={addMultiple}
-                    onChange={handleAddMultiple}
+                    onChange={(_, checked) => setAddMultiple(checked)}
                     control={
                         <StyledCheckbox />
                     } 

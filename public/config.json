@@ -1,5 +1,5 @@
 {
     "cropperType": "select",
-    "addTileButtonInPalette": true
+    "actionsAreStatic": false
 }
  

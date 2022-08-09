@@ -11,25 +11,29 @@ const Wrapper = styled(Box)`
     min-width: 300px;
 `
 
-const DebugDrawer = () => {
+const DebugDrawer = (props: {setAppConfig: (config: AppConfig) => void}) => {
     const [open, setOpen] = useState<boolean>(false)
-    const { appConfig, setAppConfig } = useAppConfig()
+    const appConfig = useAppConfig()
 
     const updateAppConfig = (key: string, value: any) => {
-        setAppConfig && setAppConfig(appConfig.apply({[key]: value}))
+        props.setAppConfig(appConfig.apply({[key]: value}))
     }
 
     const resetAppConfig = () => {
-        setAppConfig && setAppConfig(new AppConfig())
+        var newConfig = new AppConfig
+        console.log(newConfig)
+        props.setAppConfig(newConfig)
     }
 
     useConfigHotKey(open, setOpen);
 
     return (
+        // ISSUE016
         <Drawer
             anchor={'right'}
             open={open}
             onClose={() => setOpen(false)}
+            elevation={16}
         >
             <Wrapper>
                 <List>
