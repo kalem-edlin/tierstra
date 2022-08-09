@@ -15,7 +15,7 @@ export const HoverSection = styled(Box)<HoverSectionProps>`
     color: white;
     display: flex;
     justify-content: center;
-    z-index: -1;
+    z-index: -1; 
     position: absolute;
     overflow: hidden;
     transition: transform .5s ease-out;
