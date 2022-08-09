@@ -15,7 +15,6 @@ interface ActionButtonProps {
 }
 
 const ActionButtonWrapper = styled(Button)<ActionButtonProps>`
-    height: ${props => props.height-BORDER_RADIUS_CONSTANT}px; 
     width: ${1/3};
     color: white; 
     background-color: gray;
@@ -31,34 +30,38 @@ const ActionButton = (props: ActionButtonProps) => {
             variant="contained" 
             fullWidth
             startIcon={props.icon}
-            {...props}>
+            {...props}
+        >
             {props.children}
         </ActionButtonWrapper>
     )
 }
 
 const PaletteActions = (props: PaletteActionsProps) => {
-    const wrapperHeight = props.tileLength - BORDER_RADIUS_CONSTANT
+    const wrapperHeight = props.tileLength - BORDER_RADIUS_CONSTANT * 2
 
     return (
         <React.Fragment>
-            <HoverSection height={wrapperHeight} color="gray" center={false}>
+            <HoverSection id={'hover'} height={wrapperHeight} color="gray" center={false}>
                 <ActionButton 
                     height={wrapperHeight}
-                    icon={<AddIcon/>}
-                    onClick={props.onAddClick}>
+                    icon={<AddIcon />}
+                    onClick={props.onAddClick}
+                >
                     Add Tile
                 </ActionButton>
                 <ActionButton 
                     height={wrapperHeight}
-                    icon={<ShuffleIcon/>}
-                    onClick={props.shuffleTiles}>
+                    icon={<ShuffleIcon />}
+                    onClick={props.shuffleTiles}
+                >
                     Shuffle Tiles
                 </ActionButton>
                 <ActionButton 
                     height={wrapperHeight}
-                    icon={<ReplayIcon/>}
-                    onClick={props.resetTiles}>
+                    icon={<ReplayIcon />}
+                    onClick={props.resetTiles}
+                >
                     Reset List
                 </ActionButton>
             </HoverSection>

@@ -6,7 +6,7 @@ import { ContentProps } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 
-const Wrapper = styled(Box)<ContentProps>`
+const Wrapper = styled(Box)<{tileLength: number}>`
     overflow: hidden;
     height: 100%;
     position: relative;
@@ -19,44 +19,44 @@ const getScale = (tileLength: number, crop: CropData) => {
 }
 
 const Content = (props: ContentProps) => {
+    const { crop, tileLength, content, alt} = props
     const [loading, setLoading] = useState<boolean>(true)
-    const [scale, setScale] = useState<number>(getScale(props.tileLength, props.crop))
+    const [scale, setScale] = useState<number>(getScale(tileLength, crop))
     const { width, ref } = useResizeDetector();
 
     useEffect(() => {
-        if (props.crop) {
-            setScale(getScale(props.tileLength, props.crop))
+        if (crop) {
+            setScale(getScale(tileLength, crop))
         }
-    }, [props.crop, props.tileLength])
+    }, [crop, tileLength])
 
     // ISSUE008
     return (
         <React.Fragment>
-            <Wrapper {...props} >
+            <Wrapper tileLength={tileLength}>
                 { loading && 
                     <CircularProgress 
                         color="secondary"
                         sx={{
-                            top: (props.tileLength-(width ?? 0))/2, 
-                            left: (props.tileLength-(width ?? 0))/2, 
+                            top: (tileLength-(width ?? 0))/2, 
+                            left: (tileLength-(width ?? 0))/2, 
                             position: 'absolute'
                         }}
-                        ref={ref}
-                    /> 
+                        ref={ref} /> 
                 }
                 <div style={{
                     transform: `
                         translate(
-                            ${-props.crop.x*scale}px, 
-                            ${-props.crop.y*scale}px
+                            ${-crop.x*scale}px, 
+                            ${-crop.y*scale}px
                         ) 
                         scale(${scale})
                     `,
                     transformOrigin: '0 0'
                 }}>
                     <img 
-                        src={props.content} 
-                        alt={props.alt}
+                        src={content} 
+                        alt={alt}
                         onLoad={() => setLoading(false)} />
                 </div>
             </Wrapper>

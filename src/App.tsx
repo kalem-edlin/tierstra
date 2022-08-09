@@ -1,9 +1,10 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Exports, Tierlist } from 'data-types';
-import React, { RefObject, useCallback, useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import TierlistCanvas from "./components/Tierlist/Canvas";
+import React, { RefObject, useEffect, useState } from "react";
+import Navbar from "./components/navbar";
+import TierlistCanvas from "./components/tierlist/Canvas";
+import { AppConfigProvider } from './config';
 
 function App() {
 
@@ -16,18 +17,10 @@ function App() {
     const reloadTierlist = (newData: Tierlist | null) => {
         setPayload(newData)
     }
-
+    
     useEffect(()=>{
         setPayload(null)
     }, [payload])
-
-    // ISSUE009
-    const updateExports = useCallback((newData: Tierlist, tileLength: number) => {
-        setExports({
-            data: newData,
-            tileLength: tileLength
-        })
-    }, [])
 
     const darkTheme = createTheme({
         palette: {
@@ -36,19 +29,19 @@ function App() {
     });
 
     return (
-        <React.Fragment>
+        <AppConfigProvider>
             <CssBaseline enableColorScheme />
             <ThemeProvider theme={darkTheme}>
                 <Navbar
                     exports={exports}
                     screenshotRef={screenshotRef}
-                    reloadTierlist={reloadTierlist}/>
-                <TierlistCanvas 
+                    reloadTierlist={reloadTierlist} />
+                <TierlistCanvas
                     ref={screenshotRef}
                     payload={payload}
-                    updateExports={updateExports}/>
+                    setExports={setExports} />
             </ThemeProvider>
-        </React.Fragment>
+        </AppConfigProvider>
     );
 }
 

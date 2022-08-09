@@ -1,5 +1,6 @@
 'ISSUE001':
 Need to know how to remove the first unused parameter from a function
+### solved by using '_' and keeping outside of a typescript context so as to not need to assign it a type ###
 
 'ISSUE002':
 Perhaps an Error handling framework should be created for issues (alert or console error?)
@@ -29,3 +30,42 @@ I had to use a callback function that would not recalculate itself in the canvas
 This begs the question: Is there anyway to make sure Tierlist Data or  tileLength is only if it has changed? Will this save performance
 Callbacks are also generally used to increase performance. Where else can I use these? Im sure alot of updating is happening when dragging something. Performance gains?
 TLDR: why would I NOT use a callback in place of my functions dealing with states
+- Use it when children are re-rendering themselves too much because of functions re-calculating themselves (long lists of prop functions)
+
+'ISSUE010':
+The network logic for the appconfig fetching should be moved into a networking layer when a backend is introduced
+This also introduces an important problem. Should this update function live inside the AppConfig class if I am using OOP
+If so, the useEffect hook to load in data will not work as appConfig will change its OOP state, not its state in the react component (conflict)
+
+'ISSUE011':
+This whole Config class could have just as easily been implemented with functional programming to keep up with the patterns of the app itself. 
+However, the goal of the AppConfig is to make it as easy as possible for developers to add config items to the project and not worry too much about 
+how the debug drawer, or contexts would work in the background. An OOP method of design seemed to best accomodate this using an extension of Config
+to hide its inner workings and leave the devs with a simple interface to add config items + 
+prevents a ton of imports into the app (EG all the functions used in config)
+I tried to make items in the Config class immutable to align better with Functional programming rules that the class must adhere to within the app 
+returning a new App Config with a deep copy of items each time they must be changed for the app's Set State pattern.
+
+'ISSUE012':
+https://www.petermorlion.com/iterating-a-typescript-enum/ 
+I can implement this in a potentially smarter way. Type script Enums can be enumerated to get their case string representatino which could replace string options.
+I could also look into using properties as config items instead of a Record by converting the properties to JSON and mapping values and then converting back to app Config with typescripts record conversion
+
+'ISSUE013':
+This is done in the Config class but with a key. Should I implement a ConfigItem class that implements its own getValue => value ?? default (can use this in Config get())
+
+'ISSUE014':
+Should there be a context provider here that propogates the TierlistBaseProps data to all components WHEN it is needed on them rather then passing them through 
+many levels of props? How will I handle updating the context? Just like I have a setAppConfig property in the config context?
+
+'ISSUE015':
+JSON stringify parse deepcopy method is needed to deepcopy nested objects (as APP_CONFIG_ITEMS requires)
+Perhaps there is a way to detach the instance of APP_CONFIG_ITEMS so it is not mutated on a construction of AppConfig object
+
+'ISSUE016': 
+I cant figure out how to position the debug drawer above things like modals. THere must be some sort of overriding positioning in 
+the MUI components. This needs to be fixed so the features like cropperType can be switched while in the cropper modal.
+
+'ISSUE017':
+All Modals currently need to have the same z-index to allow debug drawer to overlay them. Surely when moving all modals into a 
+tierstra specific modal abstraction, retain this z-index so as not to set it everywhere.

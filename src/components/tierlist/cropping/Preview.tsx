@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import { styled } from '@mui/material/styles'
 import { CropPreviewProps } from 'prop-types'
 import React, { useState } from 'react'
-import Content from '../../Content'
+import Content from '../Content'
 
 const PreviewDisplayWrapper = styled(Box)`
     border-left: 1px solid black;
@@ -50,24 +50,21 @@ const Preview = (props: CropPreviewProps) => {
         }
     }
 
-    // ISSUE001
-    const handleAddMultiple = (_:any, checked: boolean) => { 
-        setAddMultiple(checked)
-    }
-
     return (
         <Wrapper
             container
-            direction="row" >
+            direction="row" 
+        >
             <ControlSection>
                 <Typography 
                     variant="h6" 
-                    color="ButtonText" >
+                    color="ButtonText" 
+                >
                     Tile:
                 </Typography>
                 <FormControlLabel 
                     checked={addMultiple}
-                    onChange={handleAddMultiple}
+                    onChange={(_, checked) => setAddMultiple(checked)}
                     control={
                         <StyledCheckbox />
                     } 
@@ -78,21 +75,22 @@ const Preview = (props: CropPreviewProps) => {
                     content={props.imageLink} 
                     tileLength={150} 
                     crop={props.crop} 
-                    alt="preview"
-                />
+                    alt="preview" />
             </PreviewDisplayWrapper>
             <ControlSection>
                 <Button 
                     onClick={onAddTileClick} 
                     variant="contained" 
                     color="success" 
-                    sx={{color: 'white'}} >
+                    sx={{color: 'white'}} 
+                >
                     Add Tile
                 </Button>
                 {addMultiple &&
                     <DoneButton 
                         onClick={props.close} 
-                        variant="contained" >
+                        variant="contained" 
+                    >
                         Done
                     </DoneButton>
                 }

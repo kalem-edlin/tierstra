@@ -4,12 +4,13 @@ import { Tierlist, TileToAdd } from 'data-types'
 import { TierlistCanvasProps } from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { DragDropContext, DragStart, DropResult } from 'react-beautiful-dnd'
-import { loadTierlist } from '../../helpers/Import'
-import Mutate from '../../helpers/Mutate'
+import { useAppConfig } from '../../config'
+import { loadTierlist } from '../../utils/Import'
+import Mutate from '../../utils/Mutate'
 import Palette from './Palette'
 import TierlistFrame from './Tierlist'
 
-const TILE_LENGTH_CONSTANT = 150
+
 
 const StyledGrid = styled(Grid)`
     min-width: 300px;
@@ -18,14 +19,15 @@ const StyledGrid = styled(Grid)`
 `
 
 const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotRef) => {
+    const appConfig = useAppConfig()
+    const tileLength = appConfig.get('tileLength') as number
     const [data, setData] = useState<Tierlist>(loadTierlist())
-    const [tileLength] = useState<number>(TILE_LENGTH_CONSTANT)
     const [dragging, setDragging] = useState<string | null>(null)
-    const { updateExports } = props
+    const { setExports } = props
     const baseTierlistProps = {
         data: data,
-        tileLength: tileLength,
         dragging: dragging,
+        tileLength: tileLength
     }
 
     // When a payload is sent from parent component, apply it to data if it is not null
@@ -36,8 +38,8 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
     // On data change, will update session storage and the SSOT for exports and tilelength data for screenshot bounds calculations
     useEffect(() => {
         sessionStorage.setItem('tierlistData', JSON.stringify(data))
-        updateExports(data, tileLength)
-    }, [data, tileLength, updateExports])
+        setExports(data, tileLength)
+    }, [data, setExports, tileLength])
 
     // Will persist the data changes IF there is a destination for any type of drag
     const handleDragEnd = (result: DropResult) => {
@@ -65,6 +67,7 @@ const TierlistCanvas = React.forwardRef((props: TierlistCanvasProps, screenshotR
     }
 
     return (
+        // ISSUE014
         <DragDropContext
             onDragEnd={handleDragEnd}
             onDragStart={handleDragStart}>

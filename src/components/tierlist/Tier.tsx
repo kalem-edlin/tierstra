@@ -11,7 +11,7 @@ const RowListContainer = styled(Box)`
     width: 0px;
 `
 
-const TierHandle = styled(Box)<TierProps>`
+const TierHandle = styled(Box)<{tileLength: number}>`
     min-width: ${props => props.tileLength}px;
     border: 1px solid grey;
     border-radius: 5px 0px 0px 5px;
@@ -39,15 +39,18 @@ const Tier = (props: TierProps) => {
     return (
         <Draggable
             draggableId={tierId}
-            index={props.index} >
+            index={props.index}
+        >
             {(provided) => (
                 <RowContainer 
                     ref={provided.innerRef} 
-                    {...provided.draggableProps}>
+                    {...provided.draggableProps}
+                >
                     <TierHandle 
                         className="centered"
                         {...props}
-                        {...provided.dragHandleProps} >
+                        {...provided.dragHandleProps}
+                    >
                         <Typography gutterBottom variant="h5">
                             {props.tier.title}
                         </Typography>

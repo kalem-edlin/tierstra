@@ -15,12 +15,14 @@ const Tierlist = React.forwardRef((props: TierlistProps, screenshotRef: any) => 
         <Droppable
             droppableId="tierlist"
             direction="vertical"
-            type="tier">
+            type="tier"
+        >
             {provided => (
                 <Wrapper
                     elevation={6}
                     ref={provided.innerRef} 
-                    {...provided.droppableProps}>
+                    {...provided.droppableProps}
+                >
                     <div ref={screenshotRef}>
                         {props.data.tierOrder && props.data.tierOrder.map((tierId: string, index: number) => {
                             const tier = props.data.tiers[tierId]

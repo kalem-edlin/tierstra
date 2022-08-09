@@ -2,10 +2,10 @@ import { Paper } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { PaletteProps } from 'prop-types'
 import React, { useState } from 'react'
-import DragActions from './Actions/DragActions'
-import PaletteActions from './Actions/PaletteActions'
+import DeleteAction from './actions/Delete'
+import PaletteActions from './actions/Palette'
 import List from './List'
-import AddTileModal from './Modals/AddTile'
+import AddTileModal from './modals/AddTile'
 
 const StyledPaper = styled(Paper)`
     border-radius: 5px;
@@ -30,22 +30,21 @@ const Palette = (props: PaletteProps) => {
                     key={PALETTE_ID} 
                     {...props}
                     listId={PALETTE_ID}
-                    tiles={tiles}/>
+                    tiles={tiles} />
             </StyledPaper>
 
             {/* The following have conditional displays */}
-            <DragActions 
+            <DeleteAction 
                 {...props} />
             {(props.dragging === null || props.dragging === 'tier') &&
                 <PaletteActions 
                     {...props}
-                    onAddClick={()=>{setDisplayAddModal(true)}}/>
+                    onAddClick={()=>{setDisplayAddModal(true)}} />
             }
             <AddTileModal                 
                 {...props}
                 open={displayAddModal}
-                onClose={()=>{setDisplayAddModal(false)}}
-            />
+                onClose={()=>{setDisplayAddModal(false)}} />
         </React.Fragment>
     )
 }

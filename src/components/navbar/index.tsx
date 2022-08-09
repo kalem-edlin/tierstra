@@ -3,9 +3,9 @@ import { AppBar, Button, Toolbar, Typography } from '@mui/material';
 import { Tierlist } from 'data-types';
 import { NavbarButtonProps, NavbarProps } from 'prop-types';
 import React, { useState } from 'react';
-import { exampleGifs, exampleMusicGenres, exampleStarWars } from '../../helpers/Data';
-import { exportJSON, exportScreenshot } from '../../helpers/Export';
-import { handleImport, loadEmptyTierlist } from '../../helpers/Import';
+import { exampleGifs, exampleMusicGenres, exampleStarWars } from '../../utils/Data';
+import { exportJSON, exportScreenshot } from '../../utils/Export';
+import { handleImport, loadEmptyTierlist } from '../../utils/Import';
 import NavbarHelp from './Help';
 import NavbarMenu from './Menu';
 
@@ -48,21 +48,20 @@ export default function Navbar(props: NavbarProps) {
                 <Typography
                     variant="h6"
                     component="div"
-                    sx={{ flexGrow: 1 }}>
+                    sx={{ flexGrow: 1 }}
+                >
                     Tierstra
                 </Typography>
-
                 <Button {...navbarButtonProps} onClick={handleNew}>
                     New
                 </Button>
-
                 <Button
                     {...navbarButtonProps}
                     aria-haspopup="true"
-                    onClick={(event) => {setExamplesMenuAnchorEl(event.target as Element)}}>
+                    onClick={(event) => setExamplesMenuAnchorEl(event.target as Element)}
+                >
                     Examples
                 </Button>
-
                 <Button {...navbarButtonProps} component="label">
                     Import
                     <input
@@ -71,16 +70,15 @@ export default function Navbar(props: NavbarProps) {
                         hidden
                         onChange={event => handleImport(event, props.reloadTierlist)} />
                 </Button>
-
                 <Button
                     {...navbarButtonProps}
                     aria-haspopup="true"
-                    onClick={(event) => setExportMenuAnchorEl(event.target as Element)}>
+                    onClick={(event) => setExportMenuAnchorEl(event.target as Element)}
+                >
                     Export
                 </Button>
-
                 <Button {...navbarButtonProps} onClick={() => setHelpMenuDisplay(true)}>
-                    <HelpIcon/>
+                    <HelpIcon />
                 </Button>
             </Toolbar>
             <NavbarMenu 

@@ -17,8 +17,7 @@ const getOnDeleteStyle = (style: any, snapshot: any) => {
 }
 
 export const Tile = (props: TileProps) => {
-    console.log(props.tile.alt)
-
+    
     return (
         <Draggable
             draggableId={props.tile.id}
@@ -29,13 +28,13 @@ export const Tile = (props: TileProps) => {
                     ref={provided.innerRef} 
                     {...provided.draggableProps} 
                     {...provided.dragHandleProps}
-                    style={getOnDeleteStyle(provided.draggableProps.style, snapshot)}>
-                        <Content 
-                            tileLength={props.tileLength}
-                            content={props.tile.content}
-                            alt={props.tile.alt}
-                            crop={props.tile.crop}
-                        />
+                    style={getOnDeleteStyle(provided.draggableProps.style, snapshot)}
+                >
+                    <Content 
+                        tileLength={props.tileLength}
+                        content={props.tile.content}
+                        alt={props.tile.alt}
+                        crop={props.tile.crop} />
                 </div>
             )}
         </Draggable>
